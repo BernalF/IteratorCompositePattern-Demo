@@ -1,4 +1,4 @@
-# ?? Iterator and Composite Patterns Demo
+# Iterator and Composite Patterns Demo
 ## Interactive Console Application - Head First Design Patterns
 
 [![.NET 8](https://img.shields.io/badge/.NET-8-blue.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
@@ -76,26 +76,26 @@ The demo will guide you through:
 
 ```
 IteratorCompositeDemo/
-??? Iterator/                    # Iterator Pattern Implementation
-?   ??? IIterator.cs            # Iterator interface
-?   ??? IAggregate.cs           # Aggregate interface  
-?   ??? MenuItem.cs             # Basic menu item
-?   ??? PancakeHouseMenu.cs     # List-based collection
-?   ??? PancakeHouseIterator.cs # Iterator for List<T>
-?   ??? DinerMenu.cs            # Array-based collection
-?   ??? DinerMenuIterator.cs    # Iterator for Array
-??? Composite/                   # Composite Pattern Implementation
-?   ??? MenuComponent.cs        # Component base class
-?   ??? MenuItem.cs             # Leaf implementation
-?   ??? Menu.cs                 # Composite implementation
-?   ??? CompositeIterator.cs    # Tree traversal iterator
-?   ??? Waitress.cs             # Client class
-??? Program.cs                  # Interactive demo entry point
-??? Tests/                      # Comprehensive test suite
-    ??? IteratorTests.cs        # Iterator pattern tests
-    ??? CompositeBehaviorTests.cs # Composite behavior tests
-    ??? CompositeIteratorTests.cs # Tree traversal tests
-    ??? WaitressTests.cs        # Integration tests
++-- Iterator/                    # Iterator Pattern Implementation
+¦   +-- IIterator.cs            # Iterator interface
+¦   +-- IAggregate.cs           # Aggregate interface  
+¦   +-- MenuItem.cs             # Basic menu item
+¦   +-- PancakeHouseMenu.cs     # List-based collection
+¦   +-- PancakeHouseIterator.cs # Iterator for List<T>
+¦   +-- DinerMenu.cs            # Array-based collection
+¦   +-- DinerMenuIterator.cs    # Iterator for Array
++-- Composite/                   # Composite Pattern Implementation
+¦   +-- MenuComponent.cs        # Component base class
+¦   +-- MenuItem.cs             # Leaf implementation
+¦   +-- Menu.cs                 # Composite implementation
+¦   +-- CompositeIterator.cs    # Tree traversal iterator
+¦   +-- Waitress.cs             # Client class
++-- Program.cs                  # Interactive demo entry point
++-- Tests/                      # Comprehensive test suite
+    +-- IteratorTests.cs        # Iterator pattern tests
+    +-- CompositeBehaviorTests.cs # Composite behavior tests
+    +-- CompositeIteratorTests.cs # Tree traversal tests
+    +-- WaitressTests.cs        # Integration tests
 ```
 
 ---
@@ -255,7 +255,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**?? Happy Learning! Transform your understanding of Iterator and Composite Patterns through this engaging, interactive experience!** ?
+**Happy Learning! Transform your understanding of Iterator and Composite Patterns through this engaging, interactive experience!**
 
 ---
 
