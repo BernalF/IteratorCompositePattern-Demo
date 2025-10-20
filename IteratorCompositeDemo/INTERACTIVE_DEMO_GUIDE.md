@@ -3,7 +3,7 @@
 
 ### 🌟 **Overview**
 
-This interactive console application demonstrates the **Iterator and Composite Patterns** from Head First Design Patterns, featuring comprehensive code examples, interactive learning, and presentation-ready features applied to the **online casino gaming industry**.
+This interactive console application demonstrates the **Iterator and Composite Patterns** from Head First Design Patterns, featuring comprehensive code examples, interactive learning, and presentation-ready features applied to the **RTG casino gaming industry**.
 
 ---
 
@@ -31,7 +31,7 @@ This interactive console application demonstrates the **Iterator and Composite P
 - **Problem First**: Shows why patterns matter before explaining how
 - **Solution Demonstration**: Step-by-step pattern implementation
 - **Benefits Highlighted**: Clear explanation of advantages
-- **Real Examples**: Practical casino game catalog scenarios adapted from the book
+- **Real Examples**: Practical RTG casino game catalog scenarios adapted from the book
 
 ---
 
@@ -165,7 +165,7 @@ public class GameManager {
 ### **🎯 Presentation Flow**
 1. **Problem Code**: Shows messy, tightly-coupled code with detailed explanation
 2. **Pattern Structure**: Displays clean pattern code with interfaces and implementations
-3. **Live Demo**: Runs actual working examples with real casino game data
+3. **Live Demo**: Runs actual working examples with real RTG casino game data
 4. **Client Code**: Shows how simple and elegant the usage becomes
 5. **Benefits**: Reinforces key learning points and real-world applicability
 
@@ -217,7 +217,7 @@ public class GameManager {
 - Progressive revelation builds understanding systematically
 - Self-paced structure allows for individual learning speeds
 - Complete reference material consolidated in one demonstration
-- Real-world casino gaming domain resonates with business audiences
+- Real-world RTG casino gaming domain resonates with business audiences
 
 ---
 
@@ -235,7 +235,7 @@ public class GameManager {
 - **Comparative Analysis**: Clear before/after code examples show transformation
 - **Visual Feedback**: Colors and formatting guide attention to important concepts
 - **Memorable Experience**: Interactive and visual elements significantly improve retention
-- **Complete Context**: Casino gaming domain provides relatable, real-world scenarios
+- **Complete Context**: RTG casino gaming domain provides relatable, real-world scenarios
 
 ---
 
@@ -252,26 +252,45 @@ public class GameManager {
 1. **🎯 Goal-Oriented**: Clear objectives stated for each section
 2. **📚 Theory + Practice**: Combines conceptual understanding with working code
 3. **🔄 Iterative Learning**: Builds concepts progressively throughout demo
-4. **💡 Real-World Context**: Practical casino gaming scenarios everyone can relate to
+4. **💡 Real-World Context**: Practical RTG casino gaming scenarios everyone can relate to
 5. **🏆 Head First Alignment**: Matches book's teaching methodology perfectly
 
 ---
 
-## 🎰 **Casino Gaming Industry Application**
+## 🎰 **RTG Casino Gaming Industry Application**
 
 ### **Real-World Scenarios Demonstrated**
-- **Multiple Game Providers**: Different providers use different data structures (List vs Array)
+- **RTG Game Series**: Different RTG series use different data structures (List vs Array)
 - **Category Hierarchies**: Slots, Table Games, Live Casino with nested subcategories
-- **Game Management**: Uniform access to diverse game catalogs
+- **Game Management**: Uniform access to diverse RTG game catalogs
 - **RTP Filtering**: Easy filtering of games by Return to Player percentage
 - **Promotional Games**: Special categories for bonus games and promotions
 
 ### **Industry-Specific Benefits**
-- **Scalable Architecture**: Easily add new game types and providers
-- **Uniform Interface**: Same code works for any game catalog type
+- **Scalable Architecture**: Easily add new RTG game types and series
+- **Uniform Interface**: Same code works for any RTG game catalog type
 - **Flexible Organization**: Create complex category hierarchies for better game discovery
-- **Performance Optimization**: Efficient iteration through large game collections
+- **Performance Optimization**: Efficient iteration through large RTG game collections
 - **Maintainable Code**: Clean separation of concerns for enterprise-scale applications
+
+### **Real RTG Games Featured:**
+#### **Slot Games:**
+- **Doragon's Gems**: Features Cascading Wins, Free Games With Gamble Option, Buy Feature, Bonus Bets
+- **Whispers of Seasons**: Japanese-themed slot with expanding wilds
+- **Plentiful Treasure**: Asian treasure slot
+- **Spirit of the Inca**: Progressive slot with millionaire jackpot
+
+#### **Table Games:**
+- **Blackjack**: 21 against the house
+- **European Roulette**: Roulette with single zero
+- **Baccarat**: High-class card game
+- **Texas Hold'em Poker**: The king of card games
+- **Craps**: Exciting dice game
+
+#### **Promotional Games:**
+- **Alien Wins**: Slot with daily free spins
+- **Horseman Prize**: The Haunted Ride of Free Games
+- **Fu Long Plinko**: Bonus Drops for free tokens, and multiply your winnings with every bounce
 
 ---
 
@@ -282,8 +301,35 @@ public class GameManager {
 - **🎥 Code Demonstrations**: Technical presentations and conference talks  
 - **🎤 Technical Presentations**: Professional development sessions and workshops
 - **👥 Interactive Workshops**: Hands-on learning environments with group participation
-- **🎰 Gaming Industry Training**: Specific relevance for casino and gaming professionals
+- **🎰 RTG Gaming Industry Training**: Specific relevance for RTG casino and gaming professionals
 
 ---
 
-**This interactive demo transforms the learning of Iterator and Composite Patterns from passive reading into an engaging, memorable educational experience that perfectly complements the Head First Design Patterns teaching methodology while providing real-world relevance to the online gambling industry!** 🚀✨
+## 📚 **Additional Learning Resources**
+
+### **Complete your learning journey with these complementary materials:**
+
+- **[📘 Study Guide (Spanish)](../Guia_Estudio_Iterator_Composite_Gaming_ES.md)** - Comprehensive theoretical guide with:
+  - Detailed explanations of both patterns applied to RTG gaming
+  - MCQ questions for exam preparation  
+  - RTG gaming industry terminology and concepts
+  - Step-by-step learning plan with real RTG games
+  
+- **[💻 Practice Solutions](../CSharp_Practice_Solutions.cs)** - Ready-to-run code examples featuring:
+  - Iterator for RTG game catalogs with RTP ordering
+  - Composite hierarchy for RTG casino categories
+  - Combined patterns for complete RTG casino systems
+  - Real-world RTG gaming industry scenarios
+
+### **🎓 Learning Path Integration**
+This interactive demo works best when combined with the other educational materials:
+
+1. **Start here** → Interactive Demo Guide (this document)
+2. **Experience** → Run the interactive demo (`dotnet run`)
+3. **Study** → [Study Guide](../Guia_Estudio_Iterator_Composite_Gaming_ES.md) for theoretical foundation
+4. **Practice** → [Practice Solutions](../CSharp_Practice_Solutions.cs) for hands-on coding
+5. **Test** → Unit tests (`dotnet test`) to validate understanding
+
+---
+
+**This interactive demo transforms the learning of Iterator and Composite Patterns from passive reading into an engaging, memorable educational experience that perfectly complements the Head First Design Patterns teaching methodology while providing real-world relevance to the RTG casino gaming industry!** 🚀✨

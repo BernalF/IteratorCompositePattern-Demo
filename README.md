@@ -11,13 +11,44 @@
 
 This interactive console application demonstrates the **Iterator Pattern** and **Composite Pattern** from the legendary book "Head First Design Patterns" by Eric Freeman & Elisabeth Robson. 
 
-The demo uses a **casino game catalog system** scenario to show how these patterns solve real-world problems in an engaging, educational way, specifically applied to the **online gambling industry**.
+The demo uses a **RTG casino game catalog system** scenario to show how these patterns solve real-world problems in an engaging, educational way, specifically applied to the **RTG gaming industry**.
 
-### 🎯 **What You'll Learn**
+---
+
+## 🎓 **Learning Resources & Navigation**
+
+### 📚 **Start Your Learning Journey Here:**
+
+| 📖 **Resource** | 🎯 **Purpose** | 👥 **Best For** |
+|-----------------|----------------|------------------|
+| **[📋 Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md)** | Complete walkthrough of the interactive demo features, presentation tips, and educational benefits | Teachers, presenters, workshop leaders |
+| **[📘 Study Guide (Spanish)](Guia_Estudio_Iterator_Composite_Gaming_ES.md)** | Comprehensive study guide covering theory, concepts, MCQs, and practical exercises adapted to RTG casino gaming | Students, self-learners, exam preparation |
+| **[💻 Practice Solutions](CSharp_Practice_Solutions.cs)** | Ready-to-run C# code examples with complete implementations of both patterns in RTG casino context | Developers, coding practice, reference implementations |
+
+### 🚀 **Recommended Learning Path:**
+
+```mermaid
+graph TD
+    A[📖 Start: README.md] --> B[📋 Interactive Demo Guide]
+    B --> C[🎮 Run Interactive Demo]
+    C --> D[📘 Study Guide - Theory & Concepts]
+    D --> E[💻 Practice Solutions - Hands-on Coding]
+    E --> F[🧪 Run Unit Tests]
+    F --> G[🎯 Apply to Real Projects]
+```
+1. **📋 [Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md)** - Start here to understand what the demo offers
+2. **🎮 Run the Demo** - Experience the patterns in action (`dotnet run`)
+3. **📘 [Study Guide](Guia_Estudio_Iterator_Composite_Gaming_ES.md)** - Deep dive into theory and concepts
+4. **💻 [Practice Solutions](CSharp_Practice_Solutions.cs)** - Implement and experiment with the code
+5. **🧪 Run Tests** - Validate your understanding (`dotnet test`)
+
+---
+
+## 🎯 **What You'll Learn**
 - **Iterator Pattern**: Uniform access to different collection types
 - **Composite Pattern**: Building and managing tree structures  
 - **Pattern Synergy**: How these patterns work beautifully together
-- **Real-World Application**: Practical examples you can apply immediately in gaming industry
+- **Real-World Application**: Practical examples you can apply immediately in RTG gaming industry
 
 ---
 
@@ -76,26 +107,29 @@ The demo will guide you through:
 
 ```
 IteratorCompositeDemo/
-├── Iterator/                    # Iterator Pattern Implementation
-│   ├── IIterator.cs            # Iterator interface
-│   ├── IAggregate.cs           # Aggregate interface  
-│   ├── CasinoGame.cs           # Basic casino game
-│   ├── SlotsCatalog.cs         # List-based collection
-│   ├── SlotsIterator.cs        # Iterator for List<T>
-│   ├── TableGamesCatalog.cs    # Array-based collection
-│   └── TableGamesIterator.cs   # Iterator for Array
-├── Composite/                   # Composite Pattern Implementation
-│   ├── GameComponent.cs        # Component base class
-│   ├── CasinoGame.cs           # Leaf implementation
-│   ├── GameCategory.cs         # Composite implementation
-│   ├── CompositeIterator.cs    # Tree traversal iterator
-│   └── GameManager.cs          # Client class
-├── Program.cs                  # Interactive demo entry point
-└── Tests/                      # Comprehensive test suite
-    ├── IteratorTests.cs        # Iterator pattern tests
-    ├── CompositeBehaviorTests.cs # Composite behavior tests
-    ├── CompositeIteratorTests.cs # Tree traversal tests
-    └── GameManagerTests.cs     # Integration tests
+├── 📋 INTERACTIVE_DEMO_GUIDE.md    # 📖 Complete demo walkthrough
+├── 📘 Guia_Estudio_*.md           # 📚 Study guides and theory
+├── 💻 CSharp_Practice_Solutions.cs # 🔧 Practice code examples
+├── Iterator/                       # Iterator Pattern Implementation
+│   ├── IIterator.cs               # Iterator interface
+│   ├── IAggregate.cs              # Aggregate interface  
+│   ├── CasinoGame.cs              # Basic casino game
+│   ├── SlotsCatalog.cs            # List-based collection
+│   ├── SlotsIterator.cs           # Iterator for List<T>
+│   ├── TableGamesCatalog.cs       # Array-based collection
+│   └── TableGamesIterator.cs      # Iterator for Array
+├── Composite/                      # Composite Pattern Implementation
+│   ├── GameComponent.cs           # Component base class
+│   ├── CasinoGame.cs              # Leaf implementation
+│   ├── GameCategory.cs            # Composite implementation
+│   ├── CompositeIterator.cs       # Tree traversal iterator
+│   └── GameManager.cs             # Client class
+├── Program.cs                     # Interactive demo entry point
+└── Tests/                         # Comprehensive test suite
+    ├── IteratorTests.cs           # Iterator pattern tests
+    ├── CompositeBehaviorTests.cs  # Composite behavior tests
+    ├── CompositeIteratorTests.cs  # Tree traversal tests
+    └── GameManagerTests.cs        # Integration tests
 ```
 
 ---
@@ -125,6 +159,8 @@ Composes objects into tree structures and treats individual objects and composit
 ## 🎤 **Perfect for Presentations**
 
 ### 🎯 **For Speakers/Trainers**
+> 👉 **Start with:** [📋 Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md) for presentation tips
+
 - **Single window experience** - no IDE switching needed
 - **Built-in code examples** - patterns displayed in console
 - **Interactive pacing** - audience can follow along
@@ -142,13 +178,13 @@ Composes objects into tree structures and treats individual objects and composit
 
 ## 🎓 **Educational Use Cases**
 
-| Setting | Benefits |
-|---------|----------|
-| **🏫 University Courses** | Interactive classroom demos, homework reference |
-| **🏢 Corporate Training** | Professional development, team workshops |
-| **🎤 Conference Talks** | Live demos, audience engagement |
-| **📖 Self Study** | Accompanies Head First Design Patterns book |
-| **🤝 Meetups & Workshops** | Hands-on learning, group discussions |
+| Setting | Benefits | Recommended Resource |
+|---------|----------|---------------------|
+| **🏫 University Courses** | Interactive classroom demos, homework reference | [📋 Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md) + [💻 Practice Code](CSharp_Practice_Solutions.cs) |
+| **🏢 Corporate Training** | Professional development, team workshops | [📘 Study Guide](Guia_Estudio_Iterator_Composite_Gaming_ES.md) |
+| **🎤 Conference Talks** | Live demos, audience engagement | [📋 Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md) |
+| **📖 Self Study** | Accompanies Head First Design Patterns book | [📘 Study Guide](Guia_Estudio_Iterator_Composite_Gaming_ES.md) |
+| **🤝 Meetups & Workshops** | Hands-on learning, group discussions | All resources combined |
 
 ---
 
@@ -192,27 +228,36 @@ After running this demo, you'll understand:
 
 ### **Pattern Synergy**
 - ✅ **Combined Power** - Iterator traverses Composite structures beautifully
-- ✅ **Real-World Application** - Practical scenarios in gaming industry
+- ✅ **Real-World Application** - Practical scenarios in RTG gaming industry
 - ✅ **Design Principles** - Open/Closed Principle, Single Responsibility
 - ✅ **Best Practices** - Clean, maintainable, extensible code
 
 ---
 
-## 🎰 **Casino Gaming Industry Application**
+## 🎰 **RTG Casino Gaming Industry Application**
 
-This demo is specifically tailored for the **online gambling industry**, demonstrating how these patterns solve real problems in:
+This demo is specifically tailored for the **RTG gaming industry**, demonstrating how these patterns solve real problems in:
 
 ### **Game Catalog Management**
-- **Multiple Providers** - Different game providers use different data structures
+- **RTG Game Series** - Different RTG series use different data structures
 - **Category Hierarchies** - Slots, Table Games, Live Casino with subcategories
 - **Promotional Games** - Special categories for bonus games and promotions
 - **RTP Filtering** - Easy filtering of games by Return to Player percentage
 
+### **Real RTG Games Featured**
+- **Doragon's Gems** - Features: Cascading Wins, Free Games With Gamble Option, Buy Feature, Bonus Bets
+- **Whispers of Seasons** - Japanese-themed slot with expanding wilds
+- **Plentiful Treasure** - Asian treasure slot
+- **Spirit of the Inca** - Progressive slot with millionaire jackpot
+- **Alien Wins** - Slot with daily free spins (Promotional)
+- **Horseman Prize** - The Haunted Ride of Free Games (Promotional)
+- **Fu Long Plinko** - Bonus Drops for free tokens (Promotional)
+
 ### **Real-World Scenarios**
-- **Slots Catalog** - Uses `List<T>` for dynamic game additions
+- **Slots Catalog** - Uses `List<T>` for dynamic RTG game additions
 - **Table Games Catalog** - Uses `Array` for fixed capacity management
 - **Live Casino** - Nested categories for different dealer studios
-- **VIP Games** - Exclusive high-stakes game categories
+- **Promotional Games** - Nested subcategories within slots
 
 ---
 
@@ -225,9 +270,9 @@ This demo closely follows the examples and teaching methodology from the acclaim
 
 ### 📚 **Chapter Coverage**
 - **Chapter 9**: "The Iterator and Composite Patterns: Well-Managed Collections"
-- **Casino Game System** - Adapted from the restaurant menu scenario
+- **RTG Casino Game System** - Adapted from the restaurant menu scenario
 - **Progressive Learning** - Problem identification → Pattern application → Benefits
-- **Real-World Context** - Online gambling industry scenarios
+- **Real-World Context** - RTG gaming industry scenarios
 
 ---
 
@@ -268,13 +313,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [C# Design Patterns](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/)
 - [Iterator Pattern (Microsoft Docs)](https://docs.microsoft.com/en-us/dotnet/api/system.collections.ienumerator)
 
-### **📋 Documentation**
-- [`INTERACTIVE_DEMO_GUIDE.md`](INTERACTIVE_DEMO_GUIDE.md) - Complete feature guide and usage instructions
+### **📋 Educational Materials in This Repository**
+- **[📋 Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md)** - Complete feature guide and usage instructions
+- **[📘 Study Guide (Spanish)](Guia_Estudio_Iterator_Composite_Gaming_ES.md)** - Comprehensive theory and practice guide
+- **[💻 Practice Solutions](CSharp_Practice_Solutions.cs)** - Hands-on coding examples and exercises
 
 ---
 
-**🎉 Happy Learning! Transform your understanding of Iterator and Composite Patterns through this engaging, interactive casino gaming experience!** 🚀
+**🎉 Happy Learning! Transform your understanding of Iterator and Composite Patterns through this engaging, interactive RTG casino gaming experience!** 🚀
 
 ---
 
-*Built with ❤️ for the developer community • Perfect for presentations, education, and hands-on learning in the gaming industry*
+*Built with ❤️ for the developer community • Perfect for presentations, education, and hands-on learning in the RTG gaming industry*
