@@ -1,5 +1,6 @@
 ﻿using IteratorCompositeDemo.Composite;
 using IteratorCompositeDemo.Iterator;
+using System.Text;
 using CasinoGame = IteratorCompositeDemo.Iterator.CasinoGame;
 
 namespace IteratorCompositeDemo;
@@ -13,6 +14,8 @@ internal class Program
 {
     static void Main()
     {
+        Console.OutputEncoding = Encoding.UTF8;
+        
         Console.Clear();
         PrintWelcome();
         
@@ -55,10 +58,10 @@ internal class Program
     private static void PrintWelcome()
     {
         Console.WriteLine("╔══════════════════════════════════════════════════════════════╗");
-        Console.WriteLine("║          HEAD FIRST DESIGN PATTERNS - INTERACTIVE DEMO      ║");
+        Console.WriteLine("║          HEAD FIRST DESIGN PATTERNS - INTERACTIVE DEMO       ║");
         Console.WriteLine("║                                                              ║");
-        Console.WriteLine("║        Iterator and Composite Patterns Demo                 ║");
-        Console.WriteLine("║        \"Casino Game Catalog Management\"                     ║");
+        Console.WriteLine("║        Iterator and Composite Patterns Demo                  ║");
+        Console.WriteLine("║        \"Casino Game Catalog Management\"                    ║");
         Console.WriteLine("╚══════════════════════════════════════════════════════════════╝");
         Console.WriteLine();
         Console.WriteLine("🎰 Welcome to the Virtual Casino! This interactive demo will show you:");
@@ -85,7 +88,7 @@ internal class Program
         Console.WriteLine("\n📄 THE PROBLEMATIC CODE:");
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine("┌─────────────────────────────────────────────────────────────┐");
-        Console.WriteLine("│                    BAD CODE EXAMPLE                        │");
+        Console.WriteLine("│                    BAD CODE EXAMPLE                         │");
         Console.WriteLine("└─────────────────────────────────────────────────────────────┘");
         Console.ResetColor();
         Console.WriteLine("   void DisplayAllGames(SlotsCatalog slots, TableGamesCatalog table) {");
@@ -115,7 +118,7 @@ internal class Program
         Console.WriteLine("   • No uniform way to handle nested game categories");
         Console.WriteLine("   • Violates the Open/Closed Principle");
         
-        Console.WriteLine("\n🤔 What if we had 10 different game providers? 20? The code becomes unmaintainable!");
+        Console.WriteLine("\n🤔 What if we had 10 different game families? 20? The code becomes unmaintainable!");
     }
 
     /// <summary>
@@ -138,15 +141,15 @@ internal class Program
         Console.WriteLine("\n🏗️  BUILDING THE GAME CATALOGS:");
         Console.WriteLine("Creating Slots Catalog (uses List<T> internally)...");
         var slotsCatalog = new SlotsCatalog();
-        slotsCatalog.AddGame(new CasinoGame("Book of Dead", "Egyptian slot with free spins", "Slots", 96.21m, 10.0m));
-        slotsCatalog.AddGame(new CasinoGame("Starburst", "Space-themed slot with expanding wilds", "Slots", 96.09m, 0.10m));
-        slotsCatalog.AddGame(new CasinoGame("Gonzo's Quest", "Adventure treasure hunting slot", "Slots", 95.97m, 0.20m));
-        slotsCatalog.AddGame(new CasinoGame("Mega Moolah", "Progressive slot with millionaire jackpot", "Slots", 88.12m, 0.25m));
+        slotsCatalog.AddGame(new CasinoGame("Doragon's Gems", "Features: Cascading Wins, Free Games With Gamble Option, Buy Feature, Bonus Bets", "Slots", 96.21m, 10.0m));
+        slotsCatalog.AddGame(new CasinoGame("Whispers of Seasons", "Japanese-themed slot with expanding wilds", "Slots", 96.09m, 0.10m));
+        slotsCatalog.AddGame(new CasinoGame("Plentiful Treasure", "Asian treasure slot", "Slots", 95.97m, 0.20m));
+        slotsCatalog.AddGame(new CasinoGame("Spirit of the Inca", "Progressive slot with millionaire jackpot", "Slots", 88.12m, 0.25m));
 
         Console.WriteLine("Creating Table Games Catalog (uses Array internally)...");
         // Table games uses Array with fixed size
         var tableGamesCatalog = new TableGamesCatalog(6);
-        tableGamesCatalog.AddGame(new CasinoGame("Classic Blackjack", "21 against the house", "Table", 99.28m, 1.0m));
+        tableGamesCatalog.AddGame(new CasinoGame("Blackjack", "21 against the house", "Table", 99.28m, 1.0m));
         tableGamesCatalog.AddGame(new CasinoGame("European Roulette", "Roulette with single zero", "Table", 97.30m, 0.50m));
         tableGamesCatalog.AddGame(new CasinoGame("Baccarat", "High-class card game", "Table", 98.94m, 5.0m));
         tableGamesCatalog.AddGame(new CasinoGame("Texas Hold'em Poker", "The king of card games", "Table", 97.82m, 2.0m));
@@ -202,9 +205,9 @@ internal class Program
 
         // Create sub-categories (composites)
         Console.WriteLine("Creating slots, table games, live casino, and promotional categories...");
-        var slotsCategory = new GameCategory("SLOT MACHINES", "Video slot games");
-        var tableGamesCategory = new GameCategory("TABLE GAMES", "Card and table games");
-        var liveCasinoCategory = new GameCategory("LIVE CASINO", "Games with real dealers");
+        var slotsCategory = new GameCategory("SLOT GAMES", "Real Series Video Slot games");
+        var tableGamesCategory = new GameCategory("TABLE GAMES", "Card and Table Games");
+        var liveCasinoCategory = new GameCategory("LIVE CASINO", "Games with Real Dealers");
         var promoGamesCategory = new GameCategory("PROMOTIONAL GAMES", "Games with special bonuses");
 
         // Add sub-categories to main catalog
@@ -215,13 +218,13 @@ internal class Program
         Console.WriteLine("Adding games to each category...");
 
         // Add games to Slots (leaves)
-        slotsCategory.Add(new Composite.CasinoGame("Book of Dead", "Egyptian slot with free spins", "Slots", 96.21m, 10.0m));
-        slotsCategory.Add(new Composite.CasinoGame("Starburst", "Space-themed slot with expanding wilds", "Slots", 96.09m, 0.10m));
-        slotsCategory.Add(new Composite.CasinoGame("Gonzo's Quest", "Adventure treasure hunting slot", "Slots", 95.97m, 0.20m));
-        slotsCategory.Add(new Composite.CasinoGame("Mega Moolah", "Progressive slot with millionaire jackpot", "Slots", 88.12m, 0.25m));
+        slotsCategory.Add(new Composite.CasinoGame("Doragon's Gems", "Features: Cascading Wins, Free Games With Gamble Option, Buy Feature, Bonus Bets", "Slots", 96.21m, 10.0m));
+        slotsCategory.Add(new Composite.CasinoGame("Whispers of Seasons", "Japanese-themed slot with expanding wilds", "Slots", 96.09m, 0.10m));
+        slotsCategory.Add(new Composite.CasinoGame("Plentiful Treasure", "Asian treasure slot", "Slots", 95.97m, 0.20m));
+        slotsCategory.Add(new Composite.CasinoGame("Spirit of the Inca", "Progressive slot with millionaire jackpot", "Slots", 88.12m, 0.25m));
 
         // Add games to Table Games (leaves)
-        tableGamesCategory.Add(new Composite.CasinoGame("Classic Blackjack", "21 against the house", "Table", 99.28m, 1.0m));
+        tableGamesCategory.Add(new Composite.CasinoGame("Blackjack", "21 against the house", "Table", 99.28m, 1.0m));
         tableGamesCategory.Add(new Composite.CasinoGame("European Roulette", "Roulette with single zero", "Table", 97.30m, 0.50m));
         tableGamesCategory.Add(new Composite.CasinoGame("Baccarat", "High-class card game", "Table", 98.94m, 5.0m));
         tableGamesCategory.Add(new Composite.CasinoGame("Texas Hold'em Poker", "The king of card games", "Table", 97.82m, 2.0m));
@@ -235,13 +238,13 @@ internal class Program
 
         // Add games to Live Casino (leaves)
         liveCasinoCategory.Add(new Composite.CasinoGame("Live VIP Blackjack", "Blackjack with real dealer", "Live", 99.28m, 5.0m));
-        liveCasinoCategory.Add(new Composite.CasinoGame("Live Immersive Roulette", "Live roulette with multiple cameras", "Live", 97.30m, 1.0m));
-        liveCasinoCategory.Add(new Composite.CasinoGame("Live Baccarat Squeeze", "Live baccarat with card squeezing", "Live", 98.94m, 10.0m));
+        liveCasinoCategory.Add(new Composite.CasinoGame("Live Roulette", "Live roulette with multiple cameras", "Live", 97.30m, 1.0m));
+        liveCasinoCategory.Add(new Composite.CasinoGame("Live Baccarat", "Live baccarat with card squeezing", "Live", 98.94m, 10.0m));
 
         // Add promotional games (leaves)
-        promoGamesCategory.Add(new Composite.CasinoGame("Lucky Spin Bonus", "Slot with daily free spins", "Promotional", 96.50m, 0.01m));
-        promoGamesCategory.Add(new Composite.CasinoGame("Cashback Roulette", "Roulette with money back feature", "Promotional", 97.00m, 0.10m));
-        promoGamesCategory.Add(new Composite.CasinoGame("VIP Jackpot Quest", "Exclusive slot for VIP players", "Promotional", 97.80m, 1.0m));
+        promoGamesCategory.Add(new Composite.CasinoGame("Alien Wins", "Slot with daily free spins", "Promotional", 96.50m, 0.01m));
+        promoGamesCategory.Add(new Composite.CasinoGame("Horseman Prize", "The Haunted Ride of Free Games", "Promotional", 97.00m, 0.10m));
+        promoGamesCategory.Add(new Composite.CasinoGame("Fu Long Plinko", "Bonus Drops for free tokens, and multiply your winnings with every bounce", "Promotional", 97.80m, 1.0m));
 
         WaitForUser("Press ENTER to see the complete casino structure...");
 
@@ -340,7 +343,7 @@ internal class Program
         Console.ResetColor();
         Console.WriteLine("   PrintGameCatalog(slotsCatalog.CreateIterator());      // List<T>");
         Console.WriteLine("   PrintGameCatalog(tableGamesCatalog.CreateIterator()); // Array");
-        Console.WriteLine("   PrintGameCatalog(liveCatalog.CreateIterator());       // Any future type!");
+        Console.WriteLine("   PrintGameCatalog(PlinkoCatalog.CreateIterator());       // Any future type!");
     }
 
     private static void ShowCompositePatternCode()
@@ -429,7 +432,7 @@ internal class Program
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════════════════════════════════════════════╗");
-        Console.WriteLine("║                        FINAL SUMMARY                        ║");
+        Console.WriteLine("║                        FINAL SUMMARY                         ║");
         Console.WriteLine("╚══════════════════════════════════════════════════════════════╝");
         Console.WriteLine();
         Console.WriteLine("🎓 WHAT YOU'VE LEARNED:");

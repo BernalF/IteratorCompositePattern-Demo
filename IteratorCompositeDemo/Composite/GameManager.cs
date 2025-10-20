@@ -1,4 +1,6 @@
-﻿namespace IteratorCompositeDemo.Composite;
+﻿using System.Text;
+
+namespace IteratorCompositeDemo.Composite;
 
 /// <summary>
 /// GameManager class - the client in the Composite pattern
@@ -29,6 +31,8 @@ public class GameManager
     /// </summary>
     public void ShowHighRtpGames()
     {
+        Console.OutputEncoding = Encoding.UTF8;
+
         Console.WriteLine("\n🎯 HIGH RTP GAMES (>97%)\n══════════════════════════════════");
         
         foreach (var gameComponent in _allGames.CreateIterator())
@@ -54,6 +58,8 @@ public class GameManager
     /// </summary>
     public void ShowGamesByCategory(string category)
     {
+        Console.OutputEncoding = Encoding.UTF8;
+
         Console.WriteLine($"\n🎮 GAMES BY CATEGORY: {category.ToUpper()}\n══════════════════════════════════");
         
         foreach (var gameComponent in _allGames.CreateIterator())

@@ -1,4 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Text;
 
 namespace IteratorCompositeDemo.Composite;
 
@@ -33,7 +34,7 @@ public class GameCategory : GameComponent
     {
         if (i < 0 || i >= _gameComponents.Count)
             throw new ArgumentOutOfRangeException(nameof(i));
-        return _gameComponents[i];
+        return _gameComponents[i]; 
     }
 
     /// <summary>
@@ -41,9 +42,11 @@ public class GameCategory : GameComponent
     /// </summary>
     public override void Display()
     {
-        Console.Write($"\n?? {Name}");
+        Console.OutputEncoding = Encoding.UTF8;
+
+        Console.Write($"\n🎯 {Name}");
         Console.WriteLine($" - {Description}");
-        Console.WriteLine("???????????????????????????????????????");
+        Console.WriteLine("═══════════════════════════════════════");
 
         // Iterate through all game components and call their display method
         foreach (var gameComponent in _gameComponents)

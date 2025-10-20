@@ -1,4 +1,6 @@
-﻿namespace IteratorCompositeDemo.Composite;
+﻿using System.Text;
+
+namespace IteratorCompositeDemo.Composite;
 
 /// <summary>
 /// Leaf class in the Composite pattern - represents individual casino games
@@ -26,6 +28,8 @@ public class CasinoGame : GameComponent
     /// </summary>
     public override void Display()
     {
+        Console.OutputEncoding = Encoding.UTF8;
+
         Console.Write($"  🎮 {Name}");
         if (Category == "Promotional")
             Console.Write(" 🎁");
