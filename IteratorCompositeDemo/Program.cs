@@ -64,7 +64,7 @@ internal class Program
         Console.WriteLine("║        \"Casino Game Catalog Management\"                    ║");
         Console.WriteLine("╚══════════════════════════════════════════════════════════════╝");
         Console.WriteLine();
-        Console.WriteLine("🎰 Welcome to the Virtual Casino! This interactive demo will show you:");
+        Console.WriteLine("🎰 Welcome to the RTG Casino! This interactive demo will show you:");
         Console.WriteLine("   • The problems these patterns solve");
         Console.WriteLine("   • How Iterator Pattern provides uniform collection access");
         Console.WriteLine("   • How Composite Pattern handles tree structures");
@@ -201,7 +201,7 @@ internal class Program
         
         // Create the main catalog (root composite)
         Console.WriteLine("Creating main casino container...");
-        var allGames = new GameCategory("VIRTUAL CASINO", "All casino games");
+        var allGames = new GameCategory("RTG CASINO", "All casino games");
 
         // Create sub-categories (composites)
         Console.WriteLine("Creating slots, table games, live casino, and promotional categories...");
