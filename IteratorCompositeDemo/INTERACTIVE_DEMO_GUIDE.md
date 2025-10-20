@@ -309,7 +309,7 @@ public class GameManager {
 
 ### **Complete your learning journey with these complementary materials:**
 
-- **[📘 Study Guide (Spanish)](../Guia_Estudio_Iterator_Composite_Gaming_ES.md)** - Comprehensive theoretical guide with:
+- **[📘 Study Guide (Spanish)](../Guia_Estudio_Iterator_Composite_ES.md)** - Comprehensive theoretical guide with:
   - Detailed explanations of both patterns applied to RTG gaming
   - MCQ questions for exam preparation  
   - RTG gaming industry terminology and concepts
@@ -326,7 +326,7 @@ This interactive demo works best when combined with the other educational materi
 
 1. **Start here** → Interactive Demo Guide (this document)
 2. **Experience** → Run the interactive demo (`dotnet run`)
-3. **Study** → [Study Guide](../Guia_Estudio_Iterator_Composite_Gaming_ES.md) for theoretical foundation
+3. **Study** → [Study Guide](../Guia_Estudio_Iterator_Composite_ES.md) for theoretical foundation
 4. **Practice** → [Practice Solutions](../CSharp_Practice_Solutions.cs) for hands-on coding
 5. **Test** → Unit tests (`dotnet test`) to validate understanding
 

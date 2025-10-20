@@ -22,7 +22,7 @@ The demo uses a **RTG casino game catalog system** scenario to show how these pa
 | 📖 **Resource** | 🎯 **Purpose** | 👥 **Best For** |
 |-----------------|----------------|------------------|
 | **[📋 Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md)** | Complete walkthrough of the interactive demo features, presentation tips, and educational benefits | Teachers, presenters, workshop leaders |
-| **[📘 Study Guide (Spanish)](Guia_Estudio_Iterator_Composite_Gaming_ES.md)** | Comprehensive study guide covering theory, concepts, MCQs, and practical exercises adapted to RTG casino gaming | Students, self-learners, exam preparation |
+| **[📘 Study Guide (Spanish)](Guia_Estudio_Iterator_Composite_ES.md)** | Comprehensive study guide covering theory, concepts, MCQs, and practical exercises adapted to RTG casino gaming | Students, self-learners, exam preparation |
 | **[💻 Practice Solutions](CSharp_Practice_Solutions.cs)** | Ready-to-run C# code examples with complete implementations of both patterns in RTG casino context | Developers, coding practice, reference implementations |
 
 ### 🚀 **Recommended Learning Path:**
@@ -38,7 +38,7 @@ graph TD
 ```
 1. **📋 [Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md)** - Start here to understand what the demo offers
 2. **🎮 Run the Demo** - Experience the patterns in action (`dotnet run`)
-3. **📘 [Study Guide](Guia_Estudio_Iterator_Composite_Gaming_ES.md)** - Deep dive into theory and concepts
+3. **📘 [Study Guide](Guia_Estudio_Iterator_Composite_ES.md)** - Deep dive into theory and concepts
 4. **💻 [Practice Solutions](CSharp_Practice_Solutions.cs)** - Implement and experiment with the code
 5. **🧪 Run Tests** - Validate your understanding (`dotnet test`)
 
@@ -181,9 +181,9 @@ Composes objects into tree structures and treats individual objects and composit
 | Setting | Benefits | Recommended Resource |
 |---------|----------|---------------------|
 | **🏫 University Courses** | Interactive classroom demos, homework reference | [📋 Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md) + [💻 Practice Code](CSharp_Practice_Solutions.cs) |
-| **🏢 Corporate Training** | Professional development, team workshops | [📘 Study Guide](Guia_Estudio_Iterator_Composite_Gaming_ES.md) |
+| **🏢 Corporate Training** | Professional development, team workshops | [📘 Study Guide](Guia_Estudio_Iterator_Composite_ES.md) |
 | **🎤 Conference Talks** | Live demos, audience engagement | [📋 Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md) |
-| **📖 Self Study** | Accompanies Head First Design Patterns book | [📘 Study Guide](Guia_Estudio_Iterator_Composite_Gaming_ES.md) |
+| **📖 Self Study** | Accompanies Head First Design Patterns book | [📘 Study Guide](Guia_Estudio_Iterator_Composite_ES.md) |
 | **🤝 Meetups & Workshops** | Hands-on learning, group discussions | All resources combined |
 
 ---
@@ -315,7 +315,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### **📋 Educational Materials in This Repository**
 - **[📋 Interactive Demo Guide](IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md)** - Complete feature guide and usage instructions
-- **[📘 Study Guide (Spanish)](Guia_Estudio_Iterator_Composite_Gaming_ES.md)** - Comprehensive theory and practice guide
+- **[📘 Study Guide (Spanish)](Guia_Estudio_Iterator_Composite_ES.md)** - Comprehensive theory and practice guide
 - **[💻 Practice Solutions](CSharp_Practice_Solutions.cs)** - Hands-on coding examples and exercises
 
 ---

@@ -5,7 +5,7 @@
 //
 // 🎓 LEARNING RESOURCES:
 // 📋 Interactive Demo Guide: IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md  
-// 📘 Study Guide (Spanish): Guia_Estudio_Iterator_Composite_Gaming_ES.md
+// 📘 Study Guide (Spanish): Guia_Estudio_Iterator_Composite_ES.md
 // 🎮 Run Interactive Demo: dotnet run (from IteratorCompositeDemo folder)
 //
 // 🎯 PURPOSE:
@@ -17,7 +17,7 @@
 // - Experiment with RTG casino-specific features (RTP, providers, categories)
 //
 // 📚 LEARNING PATH:
-// 1. Study theory → Guia_Estudio_Iterator_Composite_Gaming_ES.md
+// 1. Study theory → Guia_Estudio_Iterator_Composite_ES.md
 // 2. See patterns in action → dotnet run (interactive demo)  
 // 3. Practice coding → This file (CSharp_Practice_Solutions.cs)
 // 4. Validate understanding → dotnet test (unit tests)
@@ -357,7 +357,7 @@ void DemoCasinoPatterns() {
 //
 // 📚 For more learning materials, see:
 // - Interactive Demo Guide: IteratorCompositeDemo/INTERACTIVE_DEMO_GUIDE.md
-// - Study Guide: Guia_Estudio_Iterator_Composite_Gaming_ES.md  
+// - Study Guide: Guia_Estudio_Iterator_Composite_ES.md  
 // - Live Demo: dotnet run (from IteratorCompositeDemo folder)
 // ============================================================================
 
