@@ -1,12 +1,13 @@
 ﻿using IteratorCompositeDemo.Composite;
 using IteratorCompositeDemo.Iterator;
-using MenuItem = IteratorCompositeDemo.Iterator.MenuItem;
+using CasinoGame = IteratorCompositeDemo.Iterator.CasinoGame;
 
 namespace IteratorCompositeDemo;
 
 /// <summary>
 /// Interactive demo program showing both Iterator and Composite patterns
 /// Based on Head First Design Patterns Chapter: "The Iterator and Composite Patterns: Well-Managed Collections"
+/// Applied to Online Casino Gaming Industry
 /// </summary>
 internal class Program
 {
@@ -27,7 +28,7 @@ internal class Program
         // Part 1: Iterator Pattern Demo
         Console.Clear();
         Console.WriteLine("=== PART 2: ITERATOR PATTERN SOLUTION ===\n");
-        Console.WriteLine("🎯 GOAL: Provide uniform access to different collection types\n");
+        Console.WriteLine("🎯 GOAL: Provide uniform access to different types of game collections\n");
         
         IteratorPatternDemo();
 
@@ -36,7 +37,7 @@ internal class Program
         // Part 2: Composite Pattern Demo  
         Console.Clear();
         Console.WriteLine("=== PART 3: COMPOSITE PATTERN SOLUTION ===\n");
-        Console.WriteLine("🎯 GOAL: Handle tree structures uniformly (menus with submenus)\n");
+        Console.WriteLine("🎯 GOAL: Handle tree structures uniformly (categories with subcategories)\n");
         
         CompositePatternDemo();
 
@@ -57,10 +58,10 @@ internal class Program
         Console.WriteLine("║          HEAD FIRST DESIGN PATTERNS - INTERACTIVE DEMO      ║");
         Console.WriteLine("║                                                              ║");
         Console.WriteLine("║        Iterator and Composite Patterns Demo                 ║");
-        Console.WriteLine("║        \"Well-Managed Collections\"                           ║");
+        Console.WriteLine("║        \"Casino Game Catalog Management\"                     ║");
         Console.WriteLine("╚══════════════════════════════════════════════════════════════╝");
         Console.WriteLine();
-        Console.WriteLine("👋 Welcome! This interactive demo will show you:");
+        Console.WriteLine("🎰 Welcome to the Virtual Casino! This interactive demo will show you:");
         Console.WriteLine("   • The problems these patterns solve");
         Console.WriteLine("   • How Iterator Pattern provides uniform collection access");
         Console.WriteLine("   • How Composite Pattern handles tree structures");
@@ -78,7 +79,7 @@ internal class Program
     {
         Console.WriteLine("🚫 PROBLEM: Without patterns, we have tight coupling and code duplication\n");
         
-        Console.WriteLine("Imagine you're a programmer at Objectville Diner...");
+        Console.WriteLine("Imagine you're a programmer at an online casino...");
         WaitForUser("Press ENTER to see the problematic code...");
         
         Console.WriteLine("\n📄 THE PROBLEMATIC CODE:");
@@ -87,20 +88,20 @@ internal class Program
         Console.WriteLine("│                    BAD CODE EXAMPLE                        │");
         Console.WriteLine("└─────────────────────────────────────────────────────────────┘");
         Console.ResetColor();
-        Console.WriteLine("   void PrintAllMenus(PancakeHouseMenu pancakes, DinerMenu diner) {");
-        Console.WriteLine("       // Pancake House uses List - we need to know this!");
+        Console.WriteLine("   void DisplayAllGames(SlotsCatalog slots, TableGamesCatalog table) {");
+        Console.WriteLine("       // Slots uses List - we need to know this!");
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("       for(int i = 0; i < pancakes.GetItems().Count; i++) {");
-        Console.WriteLine("           var item = pancakes.GetItems()[i];");
-        Console.WriteLine("           Console.WriteLine($\"{item.Name} - {item.Price}\");");
+        Console.WriteLine("       for(int i = 0; i < slots.GetGames().Count; i++) {");
+        Console.WriteLine("           var game = slots.GetGames()[i];");
+        Console.WriteLine("           Console.WriteLine($\"{game.Name} - RTP: {game.RTP}%\");");
         Console.WriteLine("       }");
         Console.ResetColor();
-        Console.WriteLine("       // Diner uses Array - different iteration logic!");
+        Console.WriteLine("       // Table games uses Array - different iteration logic!");
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("       for(int i = 0; i < diner.GetLength(); i++) {");
-        Console.WriteLine("           var item = diner.GetItems()[i];");
-        Console.WriteLine("           if (item != null) // Need to check for nulls in array!");
-        Console.WriteLine("               Console.WriteLine($\"{item.Name} - {item.Price}\");");
+        Console.WriteLine("       for(int i = 0; i < table.GetLength(); i++) {");
+        Console.WriteLine("           var game = table.GetGames()[i];");
+        Console.WriteLine("           if (game != null) // Need to check for nulls in array!");
+        Console.WriteLine("               Console.WriteLine($\"{game.Name} - RTP: {game.RTP}%\");");
         Console.WriteLine("       }");
         Console.ResetColor();
         Console.WriteLine("   }");
@@ -108,17 +109,17 @@ internal class Program
         WaitForUser("\nPress ENTER to see what's wrong with this approach...");
         
         Console.WriteLine("\n❌ PROBLEMS WITH THIS APPROACH:");
-        Console.WriteLine("   • Client must know internal data structure of each menu");
-        Console.WriteLine("   • Adding new menu types requires changing existing code");
+        Console.WriteLine("   • Client must know internal data structure of each catalog");
+        Console.WriteLine("   • Adding new game types requires changing existing code");
         Console.WriteLine("   • Different iteration logic for each collection type");
-        Console.WriteLine("   • No uniform way to handle nested menu structures");
+        Console.WriteLine("   • No uniform way to handle nested game categories");
         Console.WriteLine("   • Violates the Open/Closed Principle");
         
-        Console.WriteLine("\n🤔 What if we had 10 different menu types? 20? The code becomes unmaintainable!");
+        Console.WriteLine("\n🤔 What if we had 10 different game providers? 20? The code becomes unmaintainable!");
     }
 
     /// <summary>
-    /// Demonstrates the Iterator pattern with different menu implementations
+    /// Demonstrates the Iterator pattern with different game catalog implementations
     /// Shows how we can iterate over different data structures uniformly
     /// </summary>
     private static void IteratorPatternDemo()
@@ -133,57 +134,57 @@ internal class Program
 
         WaitForUser("Press ENTER to see the Iterator Pattern in action...");
 
-        // Pancake House uses ArrayList (List<T> in C#)
-        Console.WriteLine("\n🏗️  BUILDING THE MENUS:");
-        Console.WriteLine("Creating Pancake House Menu (uses List<T> internally)...");
-        var pancakeHouseMenu = new PancakeHouseMenu();
-        pancakeHouseMenu.AddItem(new MenuItem("K&B's Pancake Breakfast", "Pancakes with scrambled eggs and toast", true, 2.99m));
-        pancakeHouseMenu.AddItem(new MenuItem("Regular Pancake Breakfast", "Pancakes with fried eggs, sausage", false, 2.99m));
-        pancakeHouseMenu.AddItem(new MenuItem("Blueberry Pancakes", "Pancakes made with fresh blueberries", true, 3.49m));
-        pancakeHouseMenu.AddItem(new MenuItem("Waffles", "Waffles with your choice of blueberries or strawberries", true, 3.59m));
+        // Slots catalog uses List<T>
+        Console.WriteLine("\n🏗️  BUILDING THE GAME CATALOGS:");
+        Console.WriteLine("Creating Slots Catalog (uses List<T> internally)...");
+        var slotsCatalog = new SlotsCatalog();
+        slotsCatalog.AddGame(new CasinoGame("Book of Dead", "Egyptian slot with free spins", "Slots", 96.21m, 10.0m));
+        slotsCatalog.AddGame(new CasinoGame("Starburst", "Space-themed slot with expanding wilds", "Slots", 96.09m, 0.10m));
+        slotsCatalog.AddGame(new CasinoGame("Gonzo's Quest", "Adventure treasure hunting slot", "Slots", 95.97m, 0.20m));
+        slotsCatalog.AddGame(new CasinoGame("Mega Moolah", "Progressive slot with millionaire jackpot", "Slots", 88.12m, 0.25m));
 
-        Console.WriteLine("Creating Diner Menu (uses Array internally)...");
-        // Diner uses Array with fixed size
-        var dinerMenu = new DinerMenu(6);
-        dinerMenu.AddItem(new MenuItem("Vegetarian BLT", "(Fakin') Bacon with lettuce & tomato on whole wheat", true, 2.99m));
-        dinerMenu.AddItem(new MenuItem("BLT", "Bacon with lettuce & tomato on whole wheat", false, 2.99m));
-        dinerMenu.AddItem(new MenuItem("Soup of the day", "Soup of the day, with a side of potato salad", false, 3.29m));
-        dinerMenu.AddItem(new MenuItem("Hotdog", "A hot dog, with sauerkraut, relish, onions, topped with cheese", false, 3.05m));
-        dinerMenu.AddItem(new MenuItem("Steamed Veggies and Brown Rice", "Steamed vegetables over brown rice", true, 3.99m));
+        Console.WriteLine("Creating Table Games Catalog (uses Array internally)...");
+        // Table games uses Array with fixed size
+        var tableGamesCatalog = new TableGamesCatalog(6);
+        tableGamesCatalog.AddGame(new CasinoGame("Classic Blackjack", "21 against the house", "Table", 99.28m, 1.0m));
+        tableGamesCatalog.AddGame(new CasinoGame("European Roulette", "Roulette with single zero", "Table", 97.30m, 0.50m));
+        tableGamesCatalog.AddGame(new CasinoGame("Baccarat", "High-class card game", "Table", 98.94m, 5.0m));
+        tableGamesCatalog.AddGame(new CasinoGame("Texas Hold'em Poker", "The king of card games", "Table", 97.82m, 2.0m));
+        tableGamesCatalog.AddGame(new CasinoGame("Craps", "Exciting dice game", "Table", 98.64m, 1.0m));
 
-        WaitForUser("\nPress ENTER to print the Pancake House Menu...");
+        WaitForUser("\nPress ENTER to display the Slots Catalog...");
 
-        Console.WriteLine("\n🥞 PANCAKE HOUSE MENU (using List<T> internally):");
-        PrintIteratorMenu(pancakeHouseMenu.CreateIterator());
+        Console.WriteLine("\n🎰 SLOTS CATALOG (using List<T> internally):");
+        PrintGameCatalog(slotsCatalog.CreateIterator());
 
-        WaitForUser("\nPress ENTER to print the Diner Menu...");
+        WaitForUser("\nPress ENTER to display the Table Games Catalog...");
 
-        Console.WriteLine("\n🍽️  DINER MENU (using Array internally):");
-        PrintIteratorMenu(dinerMenu.CreateIterator());
+        Console.WriteLine("\n🃏 TABLE GAMES CATALOG (using Array internally):");
+        PrintGameCatalog(tableGamesCatalog.CreateIterator());
 
         WaitForUser("\nPress ENTER to see the magic of the Iterator Pattern...");
 
-        Console.WriteLine("\n✨ THE MAGIC: Notice how the same PrintIteratorMenu() method works for both!");
+        Console.WriteLine("\n✨ THE MAGIC: Notice how the same PrintGameCatalog() method works for both!");
         
         ShowIteratorClientCode();
 
         Console.WriteLine("\n✅ ITERATOR PATTERN BENEFITS:");
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("   • Same PrintIteratorMenu() method works for both menus");
+        Console.WriteLine("   • Same PrintGameCatalog() method works for both catalogs");
         Console.WriteLine("   • Client code doesn't know about internal data structures");
-        Console.WriteLine("   • Easy to add new menu types without changing existing code");
+        Console.WriteLine("   • Easy to add new catalog types without changing existing code");
         Console.WriteLine("   • Encapsulates the iteration logic within each collection");
         Console.ResetColor();
     }
 
     /// <summary>
-    /// Demonstrates the Composite pattern with nested menu structure
+    /// Demonstrates the Composite pattern with nested game category structure
     /// Shows how we can treat individual items and collections uniformly
     /// </summary>
     private static void CompositePatternDemo()
     {
         Console.WriteLine("🌳 COMPOSITE PATTERN: Building Tree Structures\n");
-        Console.WriteLine("What if we want to create nested menus? Sub-menus within menus?");
+        Console.WriteLine("What if we want to create nested categories? Subcategories within categories?");
         Console.WriteLine("The Composite Pattern lets us build tree structures and treat");
         Console.WriteLine("individual objects and compositions uniformly.\n");
 
@@ -191,73 +192,73 @@ internal class Program
 
         ShowCompositePatternCode();
 
-        WaitForUser("Press ENTER to build a complex menu hierarchy...");
+        WaitForUser("Press ENTER to build a complex game hierarchy...");
 
-        Console.WriteLine("\n🏗️  BUILDING THE MENU HIERARCHY:");
+        Console.WriteLine("\n🏗️  BUILDING THE GAME HIERARCHY:");
         
-        // Create the main menu (root composite)
-        Console.WriteLine("Creating main menu container...");
-        var allMenus = new Menu("ALL MENUS", "All menus combined");
+        // Create the main catalog (root composite)
+        Console.WriteLine("Creating main casino container...");
+        var allGames = new GameCategory("VIRTUAL CASINO", "All casino games");
 
-        // Create sub-menus (composites)
-        Console.WriteLine("Creating breakfast, lunch, dinner, and dessert menus...");
-        var pancakeHouseMenu = new Menu("PANCAKE HOUSE MENU", "Breakfast");
-        var dinerMenu = new Menu("DINER MENU", "Lunch");
-        var cafeMenu = new Menu("CAFE MENU", "Dinner");
-        var dessertMenu = new Menu("DESSERT MENU", "Dessert of course!");
+        // Create sub-categories (composites)
+        Console.WriteLine("Creating slots, table games, live casino, and promotional categories...");
+        var slotsCategory = new GameCategory("SLOT MACHINES", "Video slot games");
+        var tableGamesCategory = new GameCategory("TABLE GAMES", "Card and table games");
+        var liveCasinoCategory = new GameCategory("LIVE CASINO", "Games with real dealers");
+        var promoGamesCategory = new GameCategory("PROMOTIONAL GAMES", "Games with special bonuses");
 
-        // Add sub-menus to main menu
-        allMenus.Add(pancakeHouseMenu);
-        allMenus.Add(dinerMenu);
-        allMenus.Add(cafeMenu);
+        // Add sub-categories to main catalog
+        allGames.Add(slotsCategory);
+        allGames.Add(tableGamesCategory);
+        allGames.Add(liveCasinoCategory);
 
-        Console.WriteLine("Adding menu items to each section...");
+        Console.WriteLine("Adding games to each category...");
 
-        // Add menu items to Pancake House (leaves)
-        pancakeHouseMenu.Add(new Composite.MenuItem("K&B's Pancake Breakfast", "Pancakes with scrambled eggs and toast", true, 2.99m));
-        pancakeHouseMenu.Add(new Composite.MenuItem("Regular Pancake Breakfast", "Pancakes with fried eggs, sausage", false, 2.99m));
-        pancakeHouseMenu.Add(new Composite.MenuItem("Blueberry Pancakes", "Pancakes made with fresh blueberries and blueberry syrup", true, 3.49m));
-        pancakeHouseMenu.Add(new Composite.MenuItem("Waffles", "Waffles with your choice of blueberries or strawberries", true, 3.59m));
+        // Add games to Slots (leaves)
+        slotsCategory.Add(new Composite.CasinoGame("Book of Dead", "Egyptian slot with free spins", "Slots", 96.21m, 10.0m));
+        slotsCategory.Add(new Composite.CasinoGame("Starburst", "Space-themed slot with expanding wilds", "Slots", 96.09m, 0.10m));
+        slotsCategory.Add(new Composite.CasinoGame("Gonzo's Quest", "Adventure treasure hunting slot", "Slots", 95.97m, 0.20m));
+        slotsCategory.Add(new Composite.CasinoGame("Mega Moolah", "Progressive slot with millionaire jackpot", "Slots", 88.12m, 0.25m));
 
-        // Add menu items to Diner (leaves)
-        dinerMenu.Add(new Composite.MenuItem("Vegetarian BLT", "(Fakin') Bacon with lettuce & tomato on whole wheat", true, 2.99m));
-        dinerMenu.Add(new Composite.MenuItem("BLT", "Bacon with lettuce & tomato on whole wheat", false, 2.99m));
-        dinerMenu.Add(new Composite.MenuItem("Soup of the day", "Soup of the day, with a side of potato salad", false, 3.29m));
-        dinerMenu.Add(new Composite.MenuItem("Hotdog", "A hot dog, with sauerkraut, relish, onions, topped with cheese", false, 3.05m));
+        // Add games to Table Games (leaves)
+        tableGamesCategory.Add(new Composite.CasinoGame("Classic Blackjack", "21 against the house", "Table", 99.28m, 1.0m));
+        tableGamesCategory.Add(new Composite.CasinoGame("European Roulette", "Roulette with single zero", "Table", 97.30m, 0.50m));
+        tableGamesCategory.Add(new Composite.CasinoGame("Baccarat", "High-class card game", "Table", 98.94m, 5.0m));
+        tableGamesCategory.Add(new Composite.CasinoGame("Texas Hold'em Poker", "The king of card games", "Table", 97.82m, 2.0m));
 
-        WaitForUser("\nPress ENTER to add a nested dessert menu within the diner menu...");
+        WaitForUser("\nPress ENTER to add a nested promotional games category...");
         
-        Console.WriteLine("\n🍰 ADDING NESTED STRUCTURE:");
-        Console.WriteLine("Adding dessert menu AS A SUBMENU of the diner menu...");
-        // Add the dessert submenu to diner menu (composite within composite!)
-        dinerMenu.Add(dessertMenu);
+        Console.WriteLine("\n🎁 ADDING NESTED STRUCTURE:");
+        Console.WriteLine("Adding promotional games category AS A SUBCATEGORY of slots...");
+        // Add the promo subcategory to slots category (composite within composite!)
+        slotsCategory.Add(promoGamesCategory);
 
-        // Add menu items to Cafe (leaves)
-        cafeMenu.Add(new Composite.MenuItem("Veggie Burger and Air Fries", "Veggie burger on a whole wheat bun, lettuce, tomato, and fries", true, 3.99m));
-        cafeMenu.Add(new Composite.MenuItem("Soup of the day", "A cup of the soup of the day, with a side salad", false, 3.69m));
-        cafeMenu.Add(new Composite.MenuItem("Burrito", "A large burrito, with whole pinto beans, salsa, guacamole", true, 4.29m));
+        // Add games to Live Casino (leaves)
+        liveCasinoCategory.Add(new Composite.CasinoGame("Live VIP Blackjack", "Blackjack with real dealer", "Live", 99.28m, 5.0m));
+        liveCasinoCategory.Add(new Composite.CasinoGame("Live Immersive Roulette", "Live roulette with multiple cameras", "Live", 97.30m, 1.0m));
+        liveCasinoCategory.Add(new Composite.CasinoGame("Live Baccarat Squeeze", "Live baccarat with card squeezing", "Live", 98.94m, 10.0m));
 
-        // Add dessert items (leaves)
-        dessertMenu.Add(new Composite.MenuItem("Apple Pie", "Apple pie with a flakey crust, topped with vanilla ice cream", true, 1.59m));
-        dessertMenu.Add(new Composite.MenuItem("Cheesecake", "Creamy New York cheesecake, with a chocolate graham crust", true, 1.99m));
-        dessertMenu.Add(new Composite.MenuItem("Sorbet", "A scoop of raspberry and a scoop of lime", true, 1.89m));
+        // Add promotional games (leaves)
+        promoGamesCategory.Add(new Composite.CasinoGame("Lucky Spin Bonus", "Slot with daily free spins", "Promotional", 96.50m, 0.01m));
+        promoGamesCategory.Add(new Composite.CasinoGame("Cashback Roulette", "Roulette with money back feature", "Promotional", 97.00m, 0.10m));
+        promoGamesCategory.Add(new Composite.CasinoGame("VIP Jackpot Quest", "Exclusive slot for VIP players", "Promotional", 97.80m, 1.0m));
 
-        WaitForUser("Press ENTER to see the complete menu structure...");
+        WaitForUser("Press ENTER to see the complete casino structure...");
 
-        // Create waitress (client)
-        var waitress = new Waitress(allMenus);
+        // Create game manager (client)
+        var gameManager = new GameManager(allGames);
 
-        Console.WriteLine("\n🍽️  COMPLETE MENU STRUCTURE:");
-        Console.WriteLine("Notice how the dessert menu appears nested under the diner menu!");
-        waitress.PrintMenu();
+        Console.WriteLine("\n🎰 COMPLETE CASINO STRUCTURE:");
+        Console.WriteLine("Notice how the promotional category appears nested under slots!");
+        gameManager.ShowAllGames();
 
         WaitForUser("\nPress ENTER to see Iterator + Composite working together...");
 
-        Console.WriteLine("\n🌱 VEGETARIAN MENU (Iterator traversing Composite structure):");
+        Console.WriteLine("\n🎯 HIGH RTP GAMES (Iterator traversing Composite structure):");
         Console.WriteLine("Watch how we can iterate through the ENTIRE tree structure!");
-        waitress.PrintVegetarianMenu();
+        gameManager.ShowHighRtpGames();
 
-        WaitForUser("\nPress ENTER to see how the client code stays simple...");
+        WaitForUser("\nPress ENTER to see how client code stays simple...");
 
         ShowCompositeClientCode();
 
@@ -268,7 +269,7 @@ internal class Program
         Console.WriteLine("   • Builds tree structures of arbitrary complexity");
         Console.WriteLine("   • Uniform treatment of individual objects and compositions");
         Console.WriteLine("   • Iterator pattern works seamlessly with Composite pattern");
-        Console.WriteLine("   • The waitress (client) doesn't know the difference between leaves and composites");
+        Console.WriteLine("   • The game manager (client) doesn't distinguish between leaves and composites");
         Console.WriteLine("   • Easy to add new components without changing existing code");
         Console.ResetColor();
     }
@@ -302,15 +303,15 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("// 3. Concrete Iterator (Example: for List)");
         Console.ResetColor();
-        Console.WriteLine("   public class PancakeHouseIterator : IIterator<MenuItem> {");
-        Console.WriteLine("       private List<MenuItem> _items;");
+        Console.WriteLine("   public class SlotsIterator : IIterator<CasinoGame> {");
+        Console.WriteLine("       private List<CasinoGame> _games;");
         Console.WriteLine("       private int _position = 0;");
         Console.WriteLine();
-        Console.WriteLine("       public bool HasNext() => _position < _items.Count;");
+        Console.WriteLine("       public bool HasNext() => _position < _games.Count;");
         Console.WriteLine();
-        Console.WriteLine("       public MenuItem Next() {");
+        Console.WriteLine("       public CasinoGame Next() {");
         Console.WriteLine("           if (!HasNext()) throw new InvalidOperationException();");
-        Console.WriteLine("           return _items[_position++];");
+        Console.WriteLine("           return _games[_position++];");
         Console.WriteLine("       }");
         Console.WriteLine("   }");
     }
@@ -325,21 +326,21 @@ internal class Program
         Console.ResetColor();
         
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("// The same method works for ANY menu type!");
+        Console.WriteLine("// The same method works for ANY catalog type!");
         Console.ResetColor();
-        Console.WriteLine("   void PrintIteratorMenu(IIterator<MenuItem> iterator) {");
+        Console.WriteLine("   void PrintGameCatalog(IIterator<CasinoGame> iterator) {");
         Console.WriteLine("       while (iterator.HasNext()) {");
-        Console.WriteLine("           var item = iterator.Next();");
-        Console.WriteLine("           Console.WriteLine($\"{item.Name} - ${item.Price}\");");
+        Console.WriteLine("           var game = iterator.Next();");
+        Console.WriteLine("           Console.WriteLine($\"{game.Name} - RTP: {game.RTP}%\");");
         Console.WriteLine("       }");
         Console.WriteLine("   }");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("// Usage - same method, different data structures!");
         Console.ResetColor();
-        Console.WriteLine("   PrintIteratorMenu(pancakeMenu.CreateIterator()); // List<T>");
-        Console.WriteLine("   PrintIteratorMenu(dinerMenu.CreateIterator());   // Array");
-        Console.WriteLine("   PrintIteratorMenu(cafeMenu.CreateIterator());    // Any future type!");
+        Console.WriteLine("   PrintGameCatalog(slotsCatalog.CreateIterator());      // List<T>");
+        Console.WriteLine("   PrintGameCatalog(tableGamesCatalog.CreateIterator()); // Array");
+        Console.WriteLine("   PrintGameCatalog(liveCatalog.CreateIterator());       // Any future type!");
     }
 
     private static void ShowCompositePatternCode()
@@ -352,42 +353,42 @@ internal class Program
         Console.ResetColor();
         
         Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine("// 1. Component (base class for all menu elements)");
+        Console.WriteLine("// 1. Component (base class for all game elements)");
         Console.ResetColor();
-        Console.WriteLine("   public abstract class MenuComponent {");
+        Console.WriteLine("   public abstract class GameComponent {");
         Console.WriteLine("       public virtual string Name => throw new NotSupportedException();");
-        Console.WriteLine("       public virtual decimal Price => throw new NotSupportedException();");
-        Console.WriteLine("       public virtual void Add(MenuComponent c) => throw new NotSupportedException();");
-        Console.WriteLine("       public virtual void Print() => throw new NotSupportedException();");
+        Console.WriteLine("       public virtual decimal RTP => throw new NotSupportedException();");
+        Console.WriteLine("       public virtual void Add(GameComponent c) => throw new NotSupportedException();");
+        Console.WriteLine("       public virtual void Display() => throw new NotSupportedException();");
         Console.WriteLine("   }");
         Console.WriteLine();
         
         Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine("// 2. Leaf (individual menu items)");
+        Console.WriteLine("// 2. Leaf (individual casino games)");
         Console.ResetColor();
-        Console.WriteLine("   public class MenuItem : MenuComponent {");
+        Console.WriteLine("   public class CasinoGame : GameComponent {");
         Console.WriteLine("       public override string Name { get; }");
-        Console.WriteLine("       public override decimal Price { get; }");
-        Console.WriteLine("       public override void Print() {");
-        Console.WriteLine("           Console.WriteLine($\"  {Name} - ${Price}\");");
+        Console.WriteLine("       public override decimal RTP { get; }");
+        Console.WriteLine("       public override void Display() {");
+        Console.WriteLine("           Console.WriteLine($\"  {Name} - RTP: {RTP}%\");");
         Console.WriteLine("       }");
         Console.WriteLine("   }");
         Console.WriteLine();
         
         Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine("// 3. Composite (menu containers)");
+        Console.WriteLine("// 3. Composite (game category containers)");
         Console.ResetColor();
-        Console.WriteLine("   public class Menu : MenuComponent {");
-        Console.WriteLine("       private List<MenuComponent> _components = new();");
+        Console.WriteLine("   public class GameCategory : GameComponent {");
+        Console.WriteLine("       private List<GameComponent> _components = new();");
         Console.WriteLine();
-        Console.WriteLine("       public override void Add(MenuComponent component) {");
+        Console.WriteLine("       public override void Add(GameComponent component) {");
         Console.WriteLine("           _components.Add(component);");
         Console.WriteLine("       }");
         Console.WriteLine();
-        Console.WriteLine("       public override void Print() {");
+        Console.WriteLine("       public override void Display() {");
         Console.WriteLine("           Console.WriteLine($\"\\n{Name}\");");
         Console.WriteLine("           foreach(var component in _components)");
-        Console.WriteLine("               component.Print(); // Recursive!");
+        Console.WriteLine("               component.Display(); // Recursive!");
         Console.WriteLine("       }");
         Console.WriteLine("   }");
     }
@@ -404,23 +405,23 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("// Client treats leaves and composites uniformly!");
         Console.ResetColor();
-        Console.WriteLine("   public class Waitress {");
-        Console.WriteLine("       private MenuComponent _allMenus;");
+        Console.WriteLine("   public class GameManager {");
+        Console.WriteLine("       private GameComponent _allGames;");
         Console.WriteLine();
-        Console.WriteLine("       public void PrintMenu() {");
-        Console.WriteLine("           _allMenus.Print(); // Works for entire tree!");
+        Console.WriteLine("       public void ShowAllGames() {");
+        Console.WriteLine("           _allGames.Display(); // Works for entire tree!");
         Console.WriteLine("       }");
         Console.WriteLine();
-        Console.WriteLine("       public void PrintVegetarianMenu() {");
-        Console.WriteLine("           foreach(var component in _allMenus.CreateIterator()) {");
-        Console.WriteLine("               if (component.Vegetarian)");
+        Console.WriteLine("       public void ShowHighRTPGames() {");
+        Console.WriteLine("           foreach(var component in _allGames.CreateIterator()) {");
+        Console.WriteLine("               if (component.RTP > 97.0m)");
         Console.WriteLine("                   Console.WriteLine(component.Name);");
         Console.WriteLine("           }");
         Console.WriteLine("       }");
         Console.WriteLine("   }");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("// The magic: Same code handles simple items AND complex hierarchies!");
+        Console.WriteLine("// The magic: Same code handles simple games AND complex hierarchies!");
         Console.ResetColor();
     }
 
@@ -458,7 +459,7 @@ internal class Program
         Console.WriteLine("   • Iterator can traverse Composite structures");
         Console.WriteLine("   • Both patterns promote loose coupling");
         Console.WriteLine("   • Both support the Open/Closed Principle");
-        Console.WriteLine("   • Real-world applicability in many domains");
+        Console.WriteLine("   • Real-world applicability in gaming industry");
         Console.WriteLine();
         
         Console.WriteLine("🎯 KEY TAKEAWAY: Design patterns help us write flexible,");
@@ -466,18 +467,18 @@ internal class Program
     }
 
     /// <summary>
-    /// Helper method to print menu using iterator pattern
+    /// Helper method to print game catalog using iterator pattern
     /// </summary>
-    private static void PrintIteratorMenu(IIterator<MenuItem> iterator)
+    private static void PrintGameCatalog(IIterator<CasinoGame> iterator)
     {
         while (iterator.HasNext())
         {
-            var item = iterator.Next();
-            Console.Write($"  {item.Name}");
-            if (item.Vegetarian)
-                Console.Write("(v)");
-            Console.WriteLine($" -- ${item.Price:F2}");
-            Console.WriteLine($"     {item.Description}");
+            var game = iterator.Next();
+            Console.Write($"  🎮 {game.Name}");
+            if (game.Category == "Promotional")
+                Console.Write(" 🎁");
+            Console.WriteLine($" -- RTP: {game.Rtp:F2}% | Min Bet: ${game.MinBet:F2}");
+            Console.WriteLine($"       {game.Description}");
         }
     }
 

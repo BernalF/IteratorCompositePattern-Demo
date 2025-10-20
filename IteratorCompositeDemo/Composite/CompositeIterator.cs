@@ -4,20 +4,20 @@ namespace IteratorCompositeDemo.Composite;
 
 /// <summary>
 /// Iterator implementation for the Composite pattern
-/// Provides depth-first traversal of the menu hierarchy
+/// Provides depth-first traversal of the game category hierarchy
 /// From Head First Design Patterns - demonstrates how to iterate over composite structures
 /// </summary>
-public class CompositeIterator : IEnumerator<MenuComponent>
+public class CompositeIterator : IEnumerator<GameComponent>
 {
-    private readonly Stack<MenuComponent> _stack = new();
-    private MenuComponent? _current;
+    private readonly Stack<GameComponent> _stack = new();
+    private GameComponent? _current;
 
-    public CompositeIterator(MenuComponent root)
+    public CompositeIterator(GameComponent root)
     {
         _stack.Push(root);
     }
 
-    public MenuComponent Current => _current ?? throw new InvalidOperationException();
+    public GameComponent Current => _current ?? throw new InvalidOperationException();
 
     object IEnumerator.Current => Current;
 
@@ -28,12 +28,12 @@ public class CompositeIterator : IEnumerator<MenuComponent>
 
         _current = _stack.Pop();
 
-        // If current is a Menu (composite), add its children to the stack in reverse order
+        // If current is a GameCategory (composite), add its children to the stack in reverse order
         // so they are processed in the correct order (depth-first, left-to-right)
-        if (_current is Menu menu)
+        if (_current is GameCategory gameCategory)
         {
             // Push children in reverse order for proper traversal
-            var children = GetDirectChildren(menu);
+            var children = GetDirectChildren(gameCategory);
             for (int i = children.Count - 1; i >= 0; i--)
             {
                 _stack.Push(children[i]);
@@ -43,15 +43,15 @@ public class CompositeIterator : IEnumerator<MenuComponent>
         return true;
     }
 
-    private List<MenuComponent> GetDirectChildren(Menu menu)
+    private List<GameComponent> GetDirectChildren(GameCategory gameCategory)
     {
-        var children = new List<MenuComponent>();
+        var children = new List<GameComponent>();
         int index = 0;
         while (true)
         {
             try
             {
-                children.Add(menu.GetChild(index));
+                children.Add(gameCategory.GetChild(index));
                 index++;
             }
             catch (ArgumentOutOfRangeException)

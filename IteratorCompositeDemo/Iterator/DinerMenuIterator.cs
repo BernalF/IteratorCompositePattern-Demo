@@ -1,22 +1,26 @@
 namespace IteratorCompositeDemo.Iterator;
 
-public class DinerMenuIterator : IIterator<MenuItem>
+/// <summary>
+/// Iterator for table games catalog (Array-based)
+/// Demonstrates Iterator pattern implementation for Array collections
+/// </summary>
+public class TableGamesIterator : IIterator<CasinoGame>
 {
-    private readonly MenuItem?[] _items;
+    private readonly CasinoGame?[] _games;
     private readonly int _count;
     private int _position;
 
-    public DinerMenuIterator(MenuItem?[] items, int count)
+    public TableGamesIterator(CasinoGame?[] games, int count)
     {
-        _items = items;
+        _games = games;
         _count = count;
     }
 
     public bool HasNext() => _position < _count;
 
-    public MenuItem Next()
+    public CasinoGame Next()
     {
-        if (!HasNext()) throw new InvalidOperationException("No more elements.");
-        return _items[_position++]!;
+        if (!HasNext()) throw new InvalidOperationException("No more games available.");
+        return _games[_position++]!;
     }
 }

@@ -11,13 +11,13 @@
 
 This interactive console application demonstrates the **Iterator Pattern** and **Composite Pattern** from the legendary book "Head First Design Patterns" by Eric Freeman & Elisabeth Robson. 
 
-The demo uses the classic **restaurant menu system** scenario to show how these patterns solve real-world problems in an engaging, educational way.
+The demo uses a **casino game catalog system** scenario to show how these patterns solve real-world problems in an engaging, educational way, specifically applied to the **online gambling industry**.
 
 ### 🎯 **What You'll Learn**
 - **Iterator Pattern**: Uniform access to different collection types
 - **Composite Pattern**: Building and managing tree structures  
 - **Pattern Synergy**: How these patterns work beautifully together
-- **Real-World Application**: Practical examples you can apply immediately
+- **Real-World Application**: Practical examples you can apply immediately in gaming industry
 
 ---
 
@@ -32,12 +32,12 @@ The demo uses the classic **restaurant menu system** scenario to show how these 
 
 ### 🏗️ **Complete Pattern Implementation**
 - **Iterator Pattern**: List-based and Array-based collections with uniform access
-- **Composite Pattern**: Nested menu hierarchies with recursive operations
+- **Composite Pattern**: Nested game category hierarchies with recursive operations
 - **Real Working Code**: Full implementations, not just pseudocode
 - **Clean Architecture**: Well-structured, testable code following SOLID principles
 
 ### 📚 **Educational Excellence**
-- **15 Comprehensive Unit Tests** (100% pass rate)
+- **19 Comprehensive Unit Tests** (100% pass rate)
 - **Self-contained demo** - no external dependencies needed
 - **Presentation-ready** - perfect for workshops, conferences, and classrooms
 - **Head First Design Patterns alignment** - matches the book's teaching methodology
@@ -79,23 +79,23 @@ IteratorCompositeDemo/
 ├── Iterator/                    # Iterator Pattern Implementation
 │   ├── IIterator.cs            # Iterator interface
 │   ├── IAggregate.cs           # Aggregate interface  
-│   ├── MenuItem.cs             # Basic menu item
-│   ├── PancakeHouseMenu.cs     # List-based collection
-│   ├── PancakeHouseIterator.cs # Iterator for List<T>
-│   ├── DinerMenu.cs            # Array-based collection
-│   └── DinerMenuIterator.cs    # Iterator for Array
+│   ├── CasinoGame.cs           # Basic casino game
+│   ├── SlotsCatalog.cs         # List-based collection
+│   ├── SlotsIterator.cs        # Iterator for List<T>
+│   ├── TableGamesCatalog.cs    # Array-based collection
+│   └── TableGamesIterator.cs   # Iterator for Array
 ├── Composite/                   # Composite Pattern Implementation
-│   ├── MenuComponent.cs        # Component base class
-│   ├── MenuItem.cs             # Leaf implementation
-│   ├── Menu.cs                 # Composite implementation
+│   ├── GameComponent.cs        # Component base class
+│   ├── CasinoGame.cs           # Leaf implementation
+│   ├── GameCategory.cs         # Composite implementation
 │   ├── CompositeIterator.cs    # Tree traversal iterator
-│   └── Waitress.cs             # Client class
+│   └── GameManager.cs          # Client class
 ├── Program.cs                  # Interactive demo entry point
 └── Tests/                      # Comprehensive test suite
     ├── IteratorTests.cs        # Iterator pattern tests
     ├── CompositeBehaviorTests.cs # Composite behavior tests
     ├── CompositeIteratorTests.cs # Tree traversal tests
-    └── WaitressTests.cs        # Integration tests
+    └── GameManagerTests.cs     # Integration tests
 ```
 
 ---
@@ -107,18 +107,18 @@ Provides uniform access to different collection types without exposing internal 
 
 **Key Classes:**
 - `IIterator<T>` - Defines iteration interface
-- `PancakeHouseMenu` - Uses `List<T>` internally
-- `DinerMenu` - Uses `Array` internally
+- `SlotsCatalog` - Uses `List<T>` internally
+- `TableGamesCatalog` - Uses `Array` internally
 - Both provide the same iteration experience!
 
 ### 🌳 **Composite Pattern**  
 Composes objects into tree structures and treats individual objects and compositions uniformly.
 
 **Key Classes:**
-- `MenuComponent` - Base component for uniform treatment
-- `MenuItem` - Leaf nodes (individual menu items)
-- `Menu` - Composite nodes (menu containers)
-- `Waitress` - Client that works with entire hierarchy
+- `GameComponent` - Base component for uniform treatment
+- `CasinoGame` - Leaf nodes (individual casino games)
+- `GameCategory` - Composite nodes (game category containers)
+- `GameManager` - Client that works with entire hierarchy
 
 ---
 
@@ -154,7 +154,7 @@ Composes objects into tree structures and treats individual objects and composit
 
 ## 🧪 **Testing**
 
-The project includes a comprehensive test suite with **15 tests** covering:
+The project includes a comprehensive test suite with **19 tests** covering:
 
 - **Iterator Pattern Edge Cases** - Empty collections, capacity limits, multiple iterators
 - **Composite Pattern Behavior** - Tree traversal, recursive operations, nested structures  
@@ -192,9 +192,27 @@ After running this demo, you'll understand:
 
 ### **Pattern Synergy**
 - ✅ **Combined Power** - Iterator traverses Composite structures beautifully
-- ✅ **Real-World Application** - Practical scenarios you'll encounter
+- ✅ **Real-World Application** - Practical scenarios in gaming industry
 - ✅ **Design Principles** - Open/Closed Principle, Single Responsibility
 - ✅ **Best Practices** - Clean, maintainable, extensible code
+
+---
+
+## 🎰 **Casino Gaming Industry Application**
+
+This demo is specifically tailored for the **online gambling industry**, demonstrating how these patterns solve real problems in:
+
+### **Game Catalog Management**
+- **Multiple Providers** - Different game providers use different data structures
+- **Category Hierarchies** - Slots, Table Games, Live Casino with subcategories
+- **Promotional Games** - Special categories for bonus games and promotions
+- **RTP Filtering** - Easy filtering of games by Return to Player percentage
+
+### **Real-World Scenarios**
+- **Slots Catalog** - Uses `List<T>` for dynamic game additions
+- **Table Games Catalog** - Uses `Array` for fixed capacity management
+- **Live Casino** - Nested categories for different dealer studios
+- **VIP Games** - Exclusive high-stakes game categories
 
 ---
 
@@ -207,9 +225,9 @@ This demo closely follows the examples and teaching methodology from the acclaim
 
 ### 📚 **Chapter Coverage**
 - **Chapter 9**: "The Iterator and Composite Patterns: Well-Managed Collections"
-- **Restaurant Menu System** - Same domain and examples as the book
+- **Casino Game System** - Adapted from the restaurant menu scenario
 - **Progressive Learning** - Problem identification → Pattern application → Benefits
-- **Real-World Context** - Objectville Diner scenario
+- **Real-World Context** - Online gambling industry scenarios
 
 ---
 
@@ -255,8 +273,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**🎉 Happy Learning! Transform your understanding of Iterator and Composite Patterns through this engaging, interactive experience!** 🚀
+**🎉 Happy Learning! Transform your understanding of Iterator and Composite Patterns through this engaging, interactive casino gaming experience!** 🚀
 
 ---
 
-*Built with ❤️ for the developer community • Perfect for presentations, education, and hands-on learning*
+*Built with ❤️ for the developer community • Perfect for presentations, education, and hands-on learning in the gaming industry*

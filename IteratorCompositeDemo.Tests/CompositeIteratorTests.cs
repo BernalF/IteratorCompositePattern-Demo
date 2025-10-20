@@ -1,68 +1,96 @@
 using IteratorCompositeDemo.Composite;
 using Xunit;
-using System.Linq;
 
 namespace IteratorCompositeDemo.Tests;
 
 public class CompositeIteratorTests
 {
-    [Fact(DisplayName = "CompositeIterator should traverse menu hierarchy in depth-first order")]
-    public void CreateIterator_MenuHierarchyWithMultipleLevels_TraversesInDepthFirstOrder()
+    [Fact(DisplayName = "CompositeIterator should traverse game hierarchy in depth-first order")]
+    public void CreateIterator_GameHierarchyWithMultipleLevels_TraversesInDepthFirstOrder()
     {
-        var root = new Menu("ROOT", "root");
-        var c1 = new Menu("C1", "child 1");
-        var c2 = new Menu("C2", "child 2");
+        var root = new GameCategory("VIRTUAL CASINO", "All games");
+        var c1 = new GameCategory("SLOTS", "Slot machines");
+        var c2 = new GameCategory("TABLE GAMES", "Card and table games");
         root.Add(c1);
         root.Add(c2);
-        c1.Add(new MenuItem("L1", "", true, 1m));
-        c2.Add(new MenuItem("L2", "", false, 2m));
+        c1.Add(new CasinoGame("Book of Dead", "Egyptian slot", "Slots", 96.21m, 0.10m));
+        c2.Add(new CasinoGame("Blackjack", "21 card game", "Table", 99.28m, 1.0m));
 
         var names = root.CreateIterator().Select(c => c.Name).ToList();
 
-        Assert.Equal(new[] { "ROOT", "C1", "L1", "C2", "L2" }, names);
+        Assert.Equal(new[] { "VIRTUAL CASINO", "SLOTS", "Book of Dead", "TABLE GAMES", "Blackjack" }, names);
     }
 
-    [Fact(DisplayName = "CompositeIterator should traverse nested menus correctly maintaining depth-first order")]
-    public void CreateIterator_MenuWithNestedSubmenus_TraversesCorrectly()
+    [Fact(DisplayName = "CompositeIterator should traverse nested game categories correctly maintaining depth-first order")]
+    public void CreateIterator_GameCategoryWithNestedSubcategories_TraversesCorrectly()
     {
-        var root = new Menu("ALL MENUS", "All menus combined");
-        var breakfast = new Menu("BREAKFAST", "Morning meals");
-        var lunch = new Menu("LUNCH", "Midday meals");
-        var dessert = new Menu("DESSERT", "Sweet endings");
+        var root = new GameCategory("VIRTUAL CASINO", "All casino games");
+        var slots = new GameCategory("SLOT MACHINES", "Video slot games");
+        var tableGames = new GameCategory("TABLE GAMES", "Card and table games");
+        var promoGames = new GameCategory("PROMOTIONAL GAMES", "Special bonus games");
 
-        root.Add(breakfast);
-        root.Add(lunch);
-        lunch.Add(dessert); // Nest dessert under lunch
+        root.Add(slots);
+        root.Add(tableGames);
+        slots.Add(promoGames); // Nest promotional games under slots
 
-        breakfast.Add(new MenuItem("Pancakes", "Fluffy pancakes", true, 5.99m));
-        lunch.Add(new MenuItem("Sandwich", "Club sandwich", false, 7.99m));
-        dessert.Add(new MenuItem("Ice Cream", "Vanilla ice cream", true, 3.99m));
+        slots.Add(new CasinoGame("Starburst", "Space-themed slot", "Slots", 96.09m, 0.20m));
+        tableGames.Add(new CasinoGame("European Roulette", "Single zero roulette", "Table", 97.30m, 0.50m));
+        promoGames.Add(new CasinoGame("Lucky Spin Bonus", "Daily free spins", "Promotional", 96.50m, 0.01m));
 
         var names = root.CreateIterator().Select(c => c.Name).ToArray();
 
-        // Depth-first traversal: ROOT -> BREAKFAST -> Pancakes -> LUNCH -> DESSERT -> Ice Cream -> Sandwich
-        // The dessert menu gets processed before the sandwich because it was added first to lunch
-        Assert.Equal(new[] { "ALL MENUS", "BREAKFAST", "Pancakes", "LUNCH", "DESSERT", "Ice Cream", "Sandwich" }, names);
+        // Depth-first traversal: ROOT -> SLOTS -> PROMOTIONAL GAMES -> Lucky Spin Bonus -> Starburst -> TABLE GAMES -> European Roulette
+        // The promotional games category gets processed before Starburst because it was added first to slots
+        Assert.Equal(new[] { "VIRTUAL CASINO", "SLOT MACHINES", "PROMOTIONAL GAMES", "Lucky Spin Bonus", "Starburst", "TABLE GAMES", "European Roulette" }, names);
     }
 
-    [Fact(DisplayName = "CompositeIterator should return only menu name when menu has no items")]
-    public void CreateIterator_EmptyMenu_ReturnsOnlyMenuName()
+    [Fact(DisplayName = "CompositeIterator should return only category name when category has no games")]
+    public void CreateIterator_EmptyGameCategory_ReturnsOnlyCategoryName()
     {
-        var emptyMenu = new Menu("EMPTY", "No items");
+        var emptyCategory = new GameCategory("EMPTY CATEGORY", "No games");
         
-        var names = emptyMenu.CreateIterator().Select(c => c.Name).ToArray();
+        var names = emptyCategory.CreateIterator().Select(c => c.Name).ToArray();
         
-        Assert.Equal(new[] { "EMPTY" }, names);
+        Assert.Equal(new[] { "EMPTY CATEGORY" }, names);
     }
 
-    [Fact(DisplayName = "CompositeIterator should return both menu and item when menu has single item")]
-    public void CreateIterator_MenuWithSingleItem_ReturnsBothMenuAndItem()
+    [Fact(DisplayName = "CompositeIterator should return both category and game when category has single game")]
+    public void CreateIterator_CategoryWithSingleGame_ReturnsBothCategoryAndGame()
     {
-        var menu = new Menu("SINGLE", "One item menu");
-        menu.Add(new MenuItem("Lone Item", "The only item", true, 1.99m));
+        var category = new GameCategory("SINGLE GAME CATEGORY", "One game category");
+        category.Add(new CasinoGame("Lone Game", "The only game", "Slots", 95.0m, 0.10m));
         
-        var names = menu.CreateIterator().Select(c => c.Name).ToArray();
+        var names = category.CreateIterator().Select(c => c.Name).ToArray();
         
-        Assert.Equal(new[] { "SINGLE", "Lone Item" }, names);
+        Assert.Equal(new[] { "SINGLE GAME CATEGORY", "Lone Game" }, names);
+    }
+
+    [Fact(DisplayName = "CompositeIterator should handle complex nested structures with multiple levels")]
+    public void CreateIterator_ComplexNestedStructure_TraversesCorrectly()
+    {
+        var casino = new GameCategory("MEGA CASINO", "Complete casino");
+        var mainFloor = new GameCategory("MAIN FLOOR", "Primary gaming area");
+        var vipSection = new GameCategory("VIP SECTION", "High roller area");
+        var vipSlots = new GameCategory("VIP SLOTS", "Exclusive slots");
+
+        casino.Add(mainFloor);
+        casino.Add(vipSection);
+        vipSection.Add(vipSlots);
+
+        mainFloor.Add(new CasinoGame("Regular Blackjack", "Standard blackjack", "Table", 99.28m, 1.0m));
+        vipSlots.Add(new CasinoGame("VIP Mega Jackpot", "Exclusive high stakes slot", "Slots", 97.80m, 100.0m));
+        vipSection.Add(new CasinoGame("VIP Baccarat", "High limit baccarat", "Table", 98.94m, 50.0m));
+
+        var names = casino.CreateIterator().Select(c => c.Name).ToArray();
+
+        Assert.Equal(new[] { 
+            "MEGA CASINO", 
+            "MAIN FLOOR", 
+            "Regular Blackjack", 
+            "VIP SECTION", 
+            "VIP SLOTS", 
+            "VIP Mega Jackpot", 
+            "VIP Baccarat" 
+        }, names);
     }
 }
