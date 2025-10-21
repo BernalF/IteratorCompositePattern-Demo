@@ -1,7 +1,7 @@
 ﻿# Guía de Estudio — Iterator & Composite (Head First Design Patterns)
 **Capítulo:** *The Iterator and Composite Patterns: Well-Managed Collections*  
-**Tema:** RTG Casino Online - Gestión de Catálogos y Categorías  
-**Objetivo:** Dominar los conceptos de Iterator y Composite aplicados a la industria del gaming RTG, cuándo aplicarlos, sus beneficios, riesgos, y cómo combinarlos para gestionar colecciones y jerarquías sin acoplamiento.
+**Tema:** Casino Online - Gestión de Catálogos y Categorías  
+**Objetivo:** Dominar los conceptos de Iterator y Composite aplicados a la industria del gaming, cuándo aplicarlos, sus beneficios, riesgos, y cómo combinarlos para gestionar colecciones y jerarquías sin acoplamiento.
 
 ---
 
@@ -23,31 +23,31 @@ Esta guía de estudio es parte de un conjunto completo de materiales educativos:
 
 ## 1) Resumen ejecutivo
 - **Problema:** El cliente termina sabiendo si los juegos están en `List`, `Array` o un árbol de categorías y duplica bucles/condiciones → rompe **OCP** y **encapsulación**.
-- **Iterator:** Proporciona una forma **uniforme** de recorrer juegos de casino RTG **sin exponer** la representación interna de cada proveedor.
+- **Iterator:** Proporciona una forma **uniforme** de recorrer juegos de casino  **sin exponer** la representación interna de cada proveedor.
 - **Composite:** Permite modelar **categorías de juegos (árboles)** tratando **Juego Individual** y **Categoría** de manera **uniforme**.
 - **Juntos:** Iterator recorre las categorías Composite de manera segura; el cliente realiza operaciones (mostrar, filtrar por RTP, buscar por proveedor) con código simple.
 
 ---
 
-## 2) Iterator — Conceptos clave aplicados al Casino RTG
-**Intención:** "Proveer un modo estándar de recorrer catálogos de juegos RTG sin exponer su estructura interna."  
-**Participantes aplicados al Gaming RTG:**
+## 2) Iterator — Conceptos clave aplicados al Casino
+**Intención:** "Proveer un modo estándar de recorrer catálogos de juegos sin exponer su estructura interna."  
+**Participantes aplicados al Gaming:**
 - `IIterator<CasinoGame>`: Define operaciones de recorrido (p. ej., `HasNext()`, `Next()`).
 - `IAggregate<CasinoGame>`: Define `CreateIterator()` para devolver un iterador de juegos.
 - Concretos: `SlotsIterator`, `TableGamesIterator`, `SlotsCatalog`, `TableGamesCatalog`.
 
-**Beneficios en el contexto de Casino RTG:**
-- **Uniformidad:** Mismo código para recorrer slots RTG (List) y juegos de mesa (Array).
-- **Encapsulación:** Oculta si los juegos RTG vienen de base de datos, archivos XML, o APIs REST.
-- **OCP:** Nuevos catálogos de juegos RTG solo requieren su iterador específico.
+**Beneficios en el contexto de Casino:**
+- **Uniformidad:** Mismo código para recorrer slots (List) y juegos de mesa (Array).
+- **Encapsulación:** Oculta si los juegos vienen de base de datos, archivos XML, o APIs REST.
+- **OCP:** Nuevos catálogos de juegos solo requieren su iterador específico.
 - **Escalabilidad:** Fácil agregar nuevas series como Real Series, i-Slots, etc.
 
-**Decisiones de diseño para Gaming RTG:**
+**Decisiones de diseño para Gaming:**
 - **Orden de recorrido:** por popularidad, RTP descendente, serie de juego, alfabético...
-- **Filtros:** por serie RTG, categoría, RTP mínimo, apuesta mínima...
-- **Consistencia:** ¿qué pasa si se agregan juegos RTG durante la iteración?
+- **Filtros:** por serie, categoría, RTP mínimo, apuesta mínima...
+- **Consistencia:** ¿qué pasa si se agregan juegos durante la iteración?
 
-**Pseudocódigo C# para Casino RTG:**
+**Pseudocódigo C# para Casino:**
 ```csharp
 public interface IIterator<T> {
     bool HasNext();
@@ -58,7 +58,7 @@ public interface IAggregate<T> {
     IIterator<T> CreateIterator();
 }
 
-// Cliente uniforme para cualquier catálogo RTG
+// Cliente uniforme para cualquier catálogo
 void PrintGameCatalog(IIterator<CasinoGame> it) {
     while (it.HasNext()) {
         var game = it.Next();
@@ -67,27 +67,27 @@ void PrintGameCatalog(IIterator<CasinoGame> it) {
 }
 ```
 
-**Cuándo usarlo en Gaming RTG:**
-- Múltiples series de juegos RTG con diferentes estructuras de datos.
+**Cuándo usarlo en Gaming:**
+- Múltiples series de juegos con diferentes estructuras de datos.
 - Quieres exponer un recorrido **seguro** sin revelar APIs internas.
 - Necesitas filtros complejos (RTP alto, juegos nuevos, jackpots progresivos).
 
 ---
 
-## 3) Composite — Conceptos clave aplicados al Casino RTG
-**Intención:** "Componer juegos RTG en **categorías jerárquicas** y permitir tratar **juegos individuales** y **categorías** de forma uniforme."  
+## 3) Composite — Conceptos clave aplicados al Casino
+**Intención:** "Componer juegos en **categorías jerárquicas** y permitir tratar **juegos individuales** y **categorías** de forma uniforme."  
 
-**Estructura aplicada al Gaming RTG:**
+**Estructura aplicada al Gaming:**
 - `GameComponent` (base): operaciones comunes (`Display()`, `Add`, `Remove`, `ShowHighRTPGames()`).
 - `CasinoGame` (Leaf): juego individual RTG (Doragon's Gems, Whispers of Seasons, etc.).
 - `GameCategory` (Composite): contiene juegos y subcategorías (Slots → Promotional Games).
 
-**Beneficios en Casino RTG:**
-- **Cliente simple:** No distingue entre juego RTG individual y categoría completa.
+**Beneficios en Casino:**
+- **Cliente simple:** No distingue entre juego individual y categoría completa.
 - **Escalabilidad:** Operaciones recursivas (mostrar toda la estructura, filtrar por RTP).
 - **Flexibilidad:** Fácil reorganizar: mover juegos promocionales dentro de slots.
 
-**Ejemplo de jerarquía de Casino RTG:**
+**Ejemplo de jerarquía de Casino:**
 ```
 🎰 RTG CASINO
 ├── 🎮 SLOT GAMES (Real Series Video Slot games)
@@ -111,7 +111,7 @@ void PrintGameCatalog(IIterator<CasinoGame> it) {
     └── 🎯 Live Baccarat
 ```
 
-**Pseudocódigo C# para Casino RTG:**
+**Pseudocódigo C# para Casino:**
 ```csharp
 public abstract class GameComponent {
     public virtual string Name => throw new NotSupportedException();
@@ -138,10 +138,10 @@ public class GameCategory : GameComponent {
 
 ---
 
-## 4) Iterator + Composite — Sinergia en Gaming RTG
-- **Necesidad:** Recorrer **toda la estructura** de juegos RTG (categorías y subcategorías) con código homogéneo.
+## 4) Iterator + Composite — Sinergia en Gaming
+- **Necesidad:** Recorrer **toda la estructura** de juegos (categorías y subcategorías) con código homogéneo.
 - **Solución:** Cada `GameCategory` expone `CreateIterator()` → iterador que recorre toda la jerarquía.
-- **Casos de uso:** Filtrar juegos con RTP > 97%, encontrar todos los juegos RTG de una serie, mostrar juegos promocionales.
+- **Casos de uso:** Filtrar juegos con RTP > 97%, encontrar todos los juegos de una serie, mostrar juegos promocionales.
 
 **Ejemplo de filtro de RTP alto:**
 ```csharp
@@ -162,49 +162,49 @@ void ShowHighRTPGames(GameComponent rtgCasino) {
 
 ---
 
-## 5) Anti‑patrones y trampas en Gaming RTG
-- **Duplicar bucles** para cada serie de juegos RTG (Real Series vs i-Slots vs Progressive).
+## 5) Anti‑patrones y trampas en Gaming
+- **Duplicar bucles** para cada serie de juegos (Real Series vs i-Slots vs Progressive).
 - **Exponer APIs internas** directamente (rompes encapsulación y abres puerta a cambios de API).
 - **API Composite demasiado "gorda"**: obligar a juegos individuales a implementar métodos de categoría.
 - **Orden de RTP** o **filtros* no definidos**: jugadores confundidos por resultados inconsistentes.
 
 ---
 
-## 6) Checklist de diseño para Gaming RTG
-- ¿El **cliente** conoce si los juegos RTG vienen de **base de datos, API REST, o archivos**? → Introduce Iterator.
+## 6) Checklist de diseño para Gaming
+- ¿El **cliente** conoce si los juegos vienen de **base de datos, API REST, o archivos**? → Introduce Iterator.
 - ¿Tienes **categorías anidadas** con operaciones uniformes (mostrar, filtrar, buscar)? → Usa Composite.
 - ¿La API de `GameComponent` es **mínima** y **coherente**? (evitar métodos no aplicables a juegos individuales)
-- ¿Definiste el **orden de RTP**, **filtros por serie RTG**, y **reglas de modificación** durante el recorrido?
+- ¿Definiste el **orden de RTP**, **filtros por serie**, y **reglas de modificación** durante el recorrido?
 - ¿Pruebas unitarias del **recorrido de catálogos** y del **comportamiento recursivo** de categorías?
 
 ---
 
-## 7) Preguntas tipo examen (MCQ) - Contexto Casino RTG
-1. ¿Cuál es el objetivo principal de Iterator en un casino RTG online?  
-   A) Mejorar el RTP de los juegos RTG.  
-   B) Recorrer catálogos de juegos RTG sin exponer las APIs internas.  
+## 7) Preguntas tipo examen (MCQ) - Contexto Casino
+1. ¿Cuál es el objetivo principal de Iterator en un casino online?  
+   A) Mejorar el RTP de los juegos.  
+   B) Recorrer catálogos de juegos sin exponer las APIs internas.  
    C) Reemplazar todas las categorías por una única estructura.  
    **Respuesta:** B
 
-2. En la jerarquía de juegos RTG, ¿qué clase contiene subcategorías y propaga operaciones?  
+2. En la jerarquía de juegos, ¿qué clase contiene subcategorías y propaga operaciones?  
    A) GameComponent  
    B) CasinoGame  
    C) GameCategory  
    **Respuesta:** C
 
-3. ¿Qué principio se refuerza al usar Iterator para múltiples series de juegos RTG?  
+3. ¿Qué principio se refuerza al usar Iterator para múltiples series de juegos?  
    A) LSP  
    B) DIP  
    C) OCP + Encapsulación  
    **Respuesta:** C
 
-4. En Composite, ¿cómo maneja un juego RTG individual una operación como "agregar subcategoría"?  
+4. En Composite, ¿cómo maneja un juego individual una operación como "agregar subcategoría"?  
    A) Implementación vacía silenciosa  
    B) Lanzar `NotSupportedException`  
    C) Convertir el juego en categoría  
    **Respuesta:** B
 
-5. ¿Qué beneficio clave ofrece Composite en la gestión de juegos de casino RTG?  
+5. ¿Qué beneficio clave ofrece Composite en la gestión de juegos de casino?  
    A) Mejor rendimiento de la base de datos  
    B) Tratamiento uniforme de juegos individuales y categorías completas  
    C) Reducción automática del house edge  
@@ -212,29 +212,29 @@ void ShowHighRTPGames(GameComponent rtgCasino) {
 
 ---
 
-## 8) Ejercicios prácticos - Contexto Gaming RTG
+## 8) Ejercicios prácticos - Contexto Gaming
 
 > 💡 **Tip:** Encuentra las soluciones completas en [CSharp_Practice_Solutions.cs](CSharp_Practice_Solutions.cs)
 
-**A. Iterator para Catálogo RTG:** Tienes `Dictionary<string, CasinoGame>` donde la clave es el ID del juego RTG. Implementa un `IIterator<CasinoGame>` que recorra por RTP descendente.  
-*Puntos clave:* ordenar por RTP, protegerte de modificaciones durante el recorrido, manejar juegos RTG con mismo RTP.
+**A. Iterator para Catálogo:** Tienes `Dictionary<string, CasinoGame>` donde la clave es el ID del juego. Implementa un `IIterator<CasinoGame>` que recorra por RTP descendente.  
+*Puntos clave:* ordenar por RTP, protegerte de modificaciones durante el recorrido, manejar juegos con mismo RTP.
 
-**B. Composite para Categorías RTG:** Modela categorías de casino RTG con `GameComponent` (base), `CasinoGame` (hoja), `GameCategory` (compuesto). Implementa `Display()` y `FindGamesByRTP(decimal minRTP)`.  
-*Puntos clave:* recursividad, búsqueda por criterios de gaming, costo de operaciones en catálogos grandes de RTG.
+**B. Composite para Categorías:** Modela categorías de casino RTG con `GameComponent` (base), `CasinoGame` (hoja), `GameCategory` (compuesto). Implementa `Display()` y `FindGamesByRTP(decimal minRTP)`.  
+*Puntos clave:* recursividad, búsqueda por criterios de gaming, costo de operaciones en catálogos grandes de casino.
 
-**C. Iterator + Composite para Casino RTG Completo:** Jerarquía `RTGCasino` → `SlotsCategory` → `PromotionalGames`. Implementa iterador que recorra **todo** en preorden. Agrega filtro por proveedor "RTG".  
-*Puntos clave:* navegación completa del árbol, filtros específicos de RTG gaming, rendimiento con miles de juegos.
+**C. Iterator + Composite para Casino Completo:** Jerarquía `RTGCasino` → `SlotsCategory` → `PromotionalGames`. Implementa iterador que recorra **todo** en preorden. Agrega filtro por proveedor "RTG".  
+*Puntos clave:* navegación completa del árbol, filtros específicos de gaming, rendimiento con miles de juegos.
 
 ---
 
-## 9) Diferencias rápidas - Contexto Gaming RTG
+## 9) Diferencias rápidas - Contexto Gaming
 | Tema               | Iterator                                   | Composite                                      |
-|--------------------|--------------------------------------------|-----------------------------------------------|
-| Enfoque Gaming     | Recorrido de catálogos RTG                 | Estructura de categorías jerárquicas          |
+|--------------------|--------------------------------------------|------------------------------------------------|
+| Enfoque Gaming     | Recorrido de catálogos RTG                 | Estructura de categorías jerárquicas           |
 | Encapsula          | APIs internas RTG y estructura de datos    | Composición de juegos y tratamiento uniforme   |
 | Beneficio clave    | Cliente no conoce origen de datos RTG      | Cliente no distingue Juego vs Categoría        |
-| Riesgo Gaming      | Orden de RTP/filtros no definidos          | API inflada en juegos individuales            |
-| Mejor juntos       | Iterar jerarquías de casino RTG de forma segura | Exponer `CreateIterator()` en categorías      |
+| Riesgo Gaming      | Orden de RTP/filtros no definidos          | API inflada en juegos individuales             |
+| Mejor juntos       | Iterar jerarquías de casino RTG de forma segura | Exponer `CreateIterator()` en categorías  |
 
 ---
 
@@ -252,11 +252,11 @@ void ShowHighRTPGames(GameComponent rtgCasino) {
 - **Sesión 1:** Problema de múltiples series RTG → Iterator (intención, diseño, práctica A con catálogos).  
 - **Sesión 2:** Categorías de casino RTG → Composite → Sinergia con Iterator (prácticas B y C) → Repaso MCQ.
 
-> **Consejo Gaming RTG:** Implementa primero versiones con pocos juegos RTG y series, luego añade validaciones (RTP, filtros, rendimiento) y pruebas con catálogos reales de miles de juegos.
+> **Consejo Gaming:** Implementa primero versiones con pocos juegos y series, luego añade validaciones (RTP, filtros, rendimiento) y pruebas con catálogos reales de miles de juegos.
 
 ---
 
-## 12) Casos de uso reales en la industria RTG
+## 12) Casos de uso reales en la industria gaming
 - **Gestión de series RTG:** Organizar Real Series, i-Slots, Progressive Jackpots uniformemente.
 - **Sistemas de recomendación:** Filtrar juegos RTG por preferencias del jugador.
 - **Herramientas de análisis:** Reportes de RTP por categoría y serie RTG.
